@@ -12,7 +12,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.paint.Color?>
 
-<BorderPane fx:controller="com.github.sethcg.Controller" xmlns:fx="http://javafx.com/fxml" prefHeight="480" prefWidth="640">
+<BorderPane fx:controller="Controller" xmlns:fx="http://javafx.com/fxml" prefHeight="480" prefWidth="640">
     <top>
         <HBox id="TopBar" prefHeight="32" prefWidth="${root.prefHeight}">
         	<Button id="AddMP3Button" prefHeight="24" maxHeight="32" contentDisplay="CENTER">Add MP3 File</Button>

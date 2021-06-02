@@ -1,16 +1,12 @@
-package com.github.sethcg;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-import javafx.beans.Observable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.MapChangeListener;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;

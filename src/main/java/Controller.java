@@ -1,5 +1,3 @@
-package com.github.sethcg;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.media.MediaPlayer;

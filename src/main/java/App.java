@@ -1,5 +1,3 @@
-package com.github.sethcg;
-
 import java.io.File;
 import java.io.IOException;
 
