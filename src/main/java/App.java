@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 
 /*
 		View: View represents the visualization of the data that model contains.
+		
+		TESTING
  */
 
 public class App extends Application {
