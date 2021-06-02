@@ -1,0 +1,153 @@
+/* DARK MODE PALETTE:
+	Darkest: 		#1C1C1C					Song Menu Grid
+	Dark:			#414141					Top/Bottom Bar
+	Light:			#7D7D7D					Song Button
+	Lightest:		#E6E6E6					Primary Text
+	Button Color:	#B65359 (Pink/Red)		Player Button
+	Button Offset:	#c9474e (Pink/Red)		Player Button
+*/
+
+.root {
+/* Color Palette:  */
+  -fx-menu-color: #414141;					/* Background Color of Top/Bottom Bar */ 
+  -fx-song-menu-color: #1C1C1C;				/* Background Color of Song Button Area */ 
+  -fx-player-button-color: #B65359;			/* Player Button Color, used on Play/Pause, Next, Back Buttons  */
+  -fx-player-button-offset: #c9474e;
+  -fx-song-button-color: #7D7D7D;
+  -fx-song-button-offset: #B65359;
+  -fx-text-color: #E6E6E6;
+  -fx-text-offset: #E6E6E6;
+  -fx-outline-color: #171717;
+  
+  /* Defaults (Inherited Properties) */
+  -fx-font-family: monospace;
+  
+}
+
+#AddMP3Button{
+	-fx-text-fill: -fx-text-color;
+	-fx-text-alignment: center;
+	-fx-font-weight: bolder;
+	-fx-font-size: 20px;
+	-fx-padding: 2, 5, 2, 5;				/* Padding: top, right, bottom, and left */
+	
+	-fx-background-color: -fx-player-button-color;
+	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
+	-fx-background-radius: 4;
+	-fx-background-insets: 0, 1, 2, 1;	
+}
+
+#AddMP3Button:hover{
+	-fx-background-color: -fx-player-button-offset;
+	-fx-effect: dropshadow(gaussian, -fx-song-button-offset, 8, 0.3, 0.0, 0.0);
+	-fx-text-fill: -fx-text-offset;
+}
+
+#TopBar{
+	-fx-background-color: -fx-menu-color;
+	-fx-padding: 5px;
+	
+	-fx-pref-height: 32px;
+	-fx-max-height: 32px;
+}
+
+#SongMenu{
+	-fx-background-color: -fx-song-menu-color;
+	-fx-vgap: 5px;
+	-fx-padding: 5 5 0 5;
+}
+
+
+#BottomBar{
+	-fx-background-color: -fx-menu-color;
+}
+
+/* The SongButtonLabel controls the SongButtons */
+#SongButtonLabel{
+	-fx-background-color: -fx-song-button-color;
+	-fx-background-radius: 3;
+	-fx-effect: dropshadow(gaussian, -fx-song-button-color, 5, 0.2, 0.0, 0.0);
+	-fx-padding: 0 5 0 5;
+
+	-fx-pref-height: 32px;
+}
+
+/* Special hover to deal with StackPane SongButtons */
+#SongButton:hover #SongButtonLabel{
+	-fx-background-color: -fx-song-button-offset;
+	-fx-effect: dropshadow(gaussian, -fx-song-button-offset, 8, 0.3, 0.0, 0.0);
+	-fx-text-fill: -fx-text-offset;
+}
+
+.scroll-pane{
+	-fx-background-color: -fx-song-menu-color;
+}
+
+#grid{
+	-fx-vgap: 5px;
+	-fx-hgap: 20px;
+	-fx-alignment: center-left;
+	
+	-fx-padding: 5px;
+	-fx-max-height: 32px;
+}
+
+.label{
+	-fx-text-fill: -fx-text-color;
+	-fx-text-alignment: left;
+	-fx-font-weight: bolder;
+	-fx-font-size: 20px;
+	
+	-fx-pref-height: 32px;
+}
+
+#TimeLabel{
+	-fx-text-fill: -fx-text-color;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	-fx-font-weight: bolder;
+	-fx-font-size: 20px;
+	
+	-fx-max-width: 60px;
+	-fx-pref-height: 32px;
+}
+
+#PlayerButton{
+	-fx-background-color: -fx-player-button-color;
+	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
+	-fx-pref-width: 32px;
+	-fx-pref-height: 32px;
+	-fx-min-width: 32px;
+	-fx-min-height: 32px;
+	
+	-fx-text-fill: rgba(0,0,0,0)	/* Make Text Invisible */
+}
+
+#PlayerButton:hover{
+	-fx-background-color: -fx-player-button-offset;
+	-fx-effect: dropshadow(gaussian, -fx-player-button-offset, 8, 0.3, 0.0, 0.0);
+	-fx-scale-y: 1.35;
+    -fx-scale-x: 1.35;
+    
+    -fx-opacity: 75%;
+}
+
+.progress-bar{
+	-fx-alignment: center;
+	-fx-vertical-alignment: center;
+	-fx-background-color: -fx-song-button-color;
+	-fx-background-radius: 4;
+	-fx-background-insets: 0, 1, 2, 1;
+	-fx-border-color: -fx-outline-color;
+	-fx-border-style: solid;
+	-fx-border-width: 3;
+	-fx-border-radius: 3;
+}
+
+.progress-bar .bar {
+	-fx-background-color: -fx-song-button-offset;
+	-fx-background-radius: 3;
+	-fx-background-insets: 0, 1, 2, 1;
+	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
+    -fx-padding: 8px; 
+}

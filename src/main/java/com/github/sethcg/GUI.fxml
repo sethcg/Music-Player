@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.beans.property.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.Color?>
+
+<BorderPane fx:controller="com.github.sethcg.Controller" xmlns:fx="http://javafx.com/fxml" prefHeight="480" prefWidth="640">
+    <top>
+        <HBox id="TopBar" prefHeight="32" prefWidth="${root.prefHeight}">
+        	<Button id="AddMP3Button" prefHeight="24" maxHeight="32" contentDisplay="CENTER">Add MP3 File</Button>
+        </HBox>
+    </top>
+    
+    <bottom>
+    	<HBox id="BottomBar" prefHeight="128" prefWidth="${root.prefHeight}">
+    		<VBox>
+    			<GridPane hgap="5" vgap="5">
+					<columnConstraints>
+						<ColumnConstraints halignment="LEFT" hgrow="NEVER"/>
+						<ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
+					</columnConstraints>
+	
+					<ImageView GridPane.columnIndex="0" GridPane.rowIndex="0"/>		<!-- INSERT ALBUM COVER -->
+					<VBox GridPane.columnIndex="0" GridPane.rowIndex="1">
+						
+					</VBox> 
+				</GridPane>
+    		</VBox>
+    	</HBox>
+    </bottom>
+</BorderPane>

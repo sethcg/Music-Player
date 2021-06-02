@@ -1,0 +1,59 @@
+package com.github.sethcg;
+
+import java.io.File;
+import java.io.FilenameFilter;
+
+import javafx.beans.Observable;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+/*
+		Data Model: 	Model represents an object carrying data. 
+						It can also have logic to update controller if its data changes.
+ */
+
+public class SongList {
+
+	private final static File folder = new File("./Music");
+	
+    private final ObservableList<Song> songList = FXCollections.observableArrayList(song -> new Observable[] {
+    	song.getTitle(),
+    	song.getArtist(),
+    	song.getLengthString(),
+    	song.getMediaPlayer()
+    });
+
+    private final ObjectProperty<Song> currentSong = new SimpleObjectProperty<>(null);
+
+    public ObjectProperty<Song> currentSongProperty() {
+        return currentSong;
+    }
+
+    // Getter For Current Song
+    public final Song getCurrentSong() {
+        return currentSongProperty().get();
+    }
+
+    // Setter For Current Song
+    public final void setCurrentSong(Song song) {
+        currentSongProperty().set(song);
+    }
+
+    public ObservableList<Song> getSongList() {
+        return songList;
+    }
+    
+    
+    // Load Data From ./Music File
+    public void loadMusicFromFolder(){
+    	FilenameFilter filter = 
+    			(directory, filename) -> filename.endsWith(".mp3");		// FileFilter for MP3 Files
+    	for(File file : folder.listFiles(filter)){						// For Each File using the Filter add to SongList
+    		songList.add(new Song(file.getPath()));
+    	}
+    }
+    
+    //public void saveData(File file) { }
+}
