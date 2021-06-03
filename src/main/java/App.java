@@ -27,19 +27,21 @@ public class App extends Application {
 	
 	private static SongList songlist = new SongList();
 	private static BorderPane root;
+	private Controller controller;
 
 	@Override
 	public void init() throws IOException{
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI.fxml"));
     	root = loader.load();
-    	Controller controller = loader.getController();
+    	controller = loader.getController();
     	
         songlist.loadMusicFromFolder();
-        controller.initializeSongList(songlist);
+        //controller.intializeSonglist(songlist);
 	}
 	
     @Override
     public void start(Stage primaryStage) {
+    	
     	root.setCenter(addCenter());					//Add SongButtons (After Initialized)*
         
         Scene scene = new Scene(root, initialWidth, initialHeight);
@@ -89,7 +91,7 @@ public class App extends Application {
     // Add Button to Complex Song Button
     public Button addSongButton(Song song){
         Button songButton = new Button();
-        songButton.setOnAction(Controller.createSongRequestEvent(song));
+        songButton.setOnAction(controller.createSongRequestEvent(song));
         songButton.setPrefWidth(Double.MAX_VALUE);
         songButton.setPrefHeight(32);
         return songButton;

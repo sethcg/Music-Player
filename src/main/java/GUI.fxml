@@ -20,20 +20,27 @@
     </top>
     
     <bottom>
-    	<HBox id="BottomBar" prefHeight="128" prefWidth="${root.prefHeight}">
-    		<VBox>
-    			<GridPane hgap="5" vgap="5">
-					<columnConstraints>
+    		<HBox id="BottomBar" maxHeight="128.0" prefHeight="128.0" prefWidth="${root.prefHeight}">
+    			<GridPane fx:id="BottomGrid" hgap="5" vgap="5">
+					<columnConstraints>	<!-- BottomBar Constraints  -->
 						<ColumnConstraints halignment="LEFT" hgrow="NEVER"/>
 						<ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
 					</columnConstraints>
-	
-					<ImageView GridPane.columnIndex="0" GridPane.rowIndex="0"/>		<!-- INSERT ALBUM COVER -->
-					<VBox GridPane.columnIndex="0" GridPane.rowIndex="1">
+					<StackPane id="albumStack" maxHeight="128.0" maxWidth="128.0" prefHeight="128.0" prefWidth="128.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+						<ImageView fx:id="albumCover" fitHeight="128.0" fitWidth="118.0"/>
+						<Label fx:id="albumLabel" id="albumCoverDefaultLabel"/>
+					</StackPane>
+					<VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+						<HBox>	<!-- DurationBar  -->
+							<Label id="durationText" text="test"/>
+							<Label id="durationText" text="test"/>
+						</HBox>
 						
+						<HBox>	<!-- ControlBar -->
+						
+						</HBox>
 					</VBox> 
 				</GridPane>
-    		</VBox>
-    	</HBox>
+    		</HBox>
     </bottom>
 </BorderPane>

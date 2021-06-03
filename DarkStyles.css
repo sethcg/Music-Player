@@ -9,7 +9,9 @@
 
 .root {
 /* Color Palette:  */
-  -fx-menu-color: #414141;					/* Background Color of Top/Bottom Bar */ 
+  -fx-menu-color: #414141;					/* Background Color of Top/Bottom Bar */
+  -fx-albumcover-color: #909090;
+  -fx-albumcover-color-offset: #606060;
   -fx-song-menu-color: #1C1C1C;				/* Background Color of Song Button Area */ 
   -fx-player-button-color: #B65359;			/* Player Button Color, used on Play/Pause, Next, Back Buttons  */
   -fx-player-button-offset: #c9474e;
@@ -150,4 +152,29 @@
 	-fx-background-insets: 0, 1, 2, 1;
 	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
     -fx-padding: 8px; 
+}
+
+#albumCover{
+	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
+}
+
+#albumStack{
+	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
+	-fx-background-insets: 5px;
+	-fx-alignment: center;
+}
+
+#albumCoverDefaultLabel{
+	-fx-text-fill: -fx-text-color;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	-fx-font-weight: bolder;
+	-fx-font-size: 120px;
+}
+
+#albumCoverDefaultColor{
+	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
+	-fx-background-insets: 5px;
+	-fx-alignment: center;
+	-fx-background-color: radial-gradient(center 50% 50%, radius 83%, -fx-albumcover-color-offset, -fx-albumcover-color);
 }

@@ -1,4 +1,4 @@
-import java.awt.image.BufferedImage;
+
 import java.io.File;
 
 import javafx.beans.property.IntegerProperty;
@@ -8,10 +8,12 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.MapChangeListener;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 
 /*
 		Model: 	Model represents an object carrying data. 
@@ -20,7 +22,7 @@ import javafx.scene.media.MediaPlayer;
 
 public class Song {
 	
-	private static final BufferedImage DEFAULT_ALBUM_COVER = new BufferedImage(256, 256, BufferedImage.TYPE_INT_RGB);
+	//private static final Image DEFAULT_ALBUM_COVER = generateImage(32, 32);
 	
 	// JavaFX related Attributes
 	private final String path;
@@ -32,7 +34,8 @@ public class Song {
 	private final StringProperty album = new SimpleStringProperty(this, "album", "");
 
 	private final IntegerProperty length = new SimpleIntegerProperty(0);
-	private final ObjectProperty<Image> albumCover = new SimpleObjectProperty<Image>(this, "album cover", SwingFXUtils.toFXImage(DEFAULT_ALBUM_COVER, null));
+	private final ObjectProperty<Image> albumCover = new SimpleObjectProperty<Image>(this, "album cover", null);
+	//private final ObjectProperty<Image> albumCover = new SimpleObjectProperty<Image>(this, "album cover", DEFAULT_ALBUM_COVER);
 
     //Song Constructor
 	public Song(String fileLocation){
@@ -90,4 +93,18 @@ public class Song {
 	public IntegerProperty getLength(){
 		return length;
 	}
+	
+	/*
+	public static Image generateImage(int width, int height) {
+	    WritableImage img = new WritableImage(width, height);
+	    PixelWriter pw = img.getPixelWriter();
+	    Double gray = 120.0 / 255.0;
+	    Color color = new Color(gray, gray, gray, 0.85);
+	    for(int x = 0; x < width; x++) {
+	    	for(int y = 0; y < height; y++) {
+	    	    pw.setColor(x, y, color);
+		    }
+	    }
+	    return img ;
+	}*/
 }
