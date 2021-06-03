@@ -15,9 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /*
-		View: View represents the visualization of the data that model contains.
-		
-		TESTING
+	View: View represents the visualization of the data that model contains.
  */
 
 public class App extends Application {
@@ -36,13 +34,12 @@ public class App extends Application {
     	controller = loader.getController();
     	
         songlist.loadMusicFromFolder();
-        //controller.intializeSonglist(songlist);
 	}
 	
     @Override
     public void start(Stage primaryStage) {
     	
-    	root.setCenter(addCenter());					//Add SongButtons (After Initialized)*
+    	root.setCenter(addCenter());		//Add SongButtons
         
         Scene scene = new Scene(root, initialWidth, initialHeight);
         scene.setUserAgentStylesheet(new File("./DarkStyles.css").toURI().toString());

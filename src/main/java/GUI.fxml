@@ -13,34 +13,63 @@
 <?import javafx.scene.paint.Color?>
 
 <BorderPane fx:controller="Controller" xmlns:fx="http://javafx.com/fxml" prefHeight="480" prefWidth="640">
+  
+    <!-- Top Menu Bar -->
     <top>
-        <HBox id="TopBar" prefHeight="32" prefWidth="${root.prefHeight}">
-        	<Button id="AddMP3Button" prefHeight="24" maxHeight="32" contentDisplay="CENTER">Add MP3 File</Button>
+        <HBox id="TopBar" prefHeight="32" prefWidth="${root.prefWidth}">
+        	<Button fx:id="addSongButton" prefHeight="24.0" maxHeight="32.0" prefWidth="150.0"/>
         </HBox>
     </top>
     
+    <!-- Bottom Menu Bar -->
     <bottom>
-    		<HBox id="BottomBar" maxHeight="128.0" prefHeight="128.0" prefWidth="${root.prefHeight}">
-    			<GridPane fx:id="BottomGrid" hgap="5" vgap="5">
-					<columnConstraints>	<!-- BottomBar Constraints  -->
-						<ColumnConstraints halignment="LEFT" hgrow="NEVER"/>
-						<ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
+    	<HBox id="BottomBar" maxHeight="128.0" prefHeight="128.0" prefWidth="${root.prefWidth}">
+			<!-- Album Cover -->
+			<StackPane id="albumStack" maxHeight="128.0" maxWidth="128.0" minHeight="128.0" minWidth="128.0">
+				<ImageView fx:id="albumCover" fitHeight="118.0" fitWidth="118.0"/>
+				<Label fx:id="albumLabel" id="albumCoverDefaultLabel"/>
+			</StackPane>
+				
+			<!-- Right Side of Bottom Bar  -->
+			<VBox fx:id="vboxSettings">
+				<!-- DurationBar -->
+				<GridPane fx:id="DurationBar" maxHeight="36.0" minHeight="36.0" prefHeight="36.0">
+				
+					<!-- DurationBar Constraints  -->
+					<columnConstraints>
+						<ColumnConstraints halignment="CENTER" prefWidth="60.0" minWidth="60.0" hgrow="NEVER"/>
+						<ColumnConstraints halignment="CENTER" hgrow="ALWAYS"/>
+						<ColumnConstraints halignment="CENTER" prefWidth="60.0" minWidth="60.0" hgrow="NEVER"/>
 					</columnConstraints>
-					<StackPane id="albumStack" maxHeight="128.0" maxWidth="128.0" prefHeight="128.0" prefWidth="128.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-						<ImageView fx:id="albumCover" fitHeight="128.0" fitWidth="118.0"/>
-						<Label fx:id="albumLabel" id="albumCoverDefaultLabel"/>
-					</StackPane>
-					<VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
-						<HBox>	<!-- DurationBar  -->
-							<Label id="durationText" text="test"/>
-							<Label id="durationText" text="test"/>
-						</HBox>
 						
-						<HBox>	<!-- ControlBar -->
-						
-						</HBox>
-					</VBox> 
+					<Label fx:id="currDuration" id="durationText" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+					<ProgressBar fx:id="durationProgress" id="songDurationBar" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+					<Label fx:id="totalDuration" id="durationText" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
 				</GridPane>
-    		</HBox>
+
+				<!-- ControlBar -->
+				<GridPane>
+					
+					<!-- ControlBar Constraints  -->
+					<columnConstraints>
+						<ColumnConstraints halignment="CENTER" hgrow="ALWAYS"/>
+						<ColumnConstraints halignment="CENTER" prefWidth="64.0" minWidth="64.0" hgrow="NEVER"/>
+						<ColumnConstraints halignment="CENTER" prefWidth="64.0" minWidth="64.0" hgrow="NEVER"/>
+						<ColumnConstraints halignment="CENTER" prefWidth="64.0" minWidth="64.0" hgrow="NEVER"/>
+						<ColumnConstraints halignment="CENTER" prefWidth="128.0" minWidth="128.0" hgrow="NEVER"/>
+					</columnConstraints>
+					
+					<VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+						<Label fx:id="titleLabel"/>
+						<Label fx:id="artistLabel"/>
+					</VBox>
+					
+					<Button fx:id="backButton" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+					<Button fx:id="playButton" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+					<Button fx:id="nextButton" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+					<Slider fx:id="volumeSlider" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+				</GridPane>
+			</VBox> 
+    	</HBox>
     </bottom>
 </BorderPane>

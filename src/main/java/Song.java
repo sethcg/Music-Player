@@ -16,14 +16,11 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
 /*
-		Model: 	Model represents an object carrying data. 
-				It can also have logic to update controller if its data changes.
+	Model: Model represents an object carrying data. It can also have logic to update controller if its data changes.
  */
 
 public class Song {
-	
-	//private static final Image DEFAULT_ALBUM_COVER = generateImage(32, 32);
-	
+
 	// JavaFX related Attributes
 	private final String path;
 	
@@ -34,8 +31,7 @@ public class Song {
 	private final StringProperty album = new SimpleStringProperty(this, "album", "");
 
 	private final IntegerProperty length = new SimpleIntegerProperty(0);
-	private final ObjectProperty<Image> albumCover = new SimpleObjectProperty<Image>(this, "album cover", null);
-	//private final ObjectProperty<Image> albumCover = new SimpleObjectProperty<Image>(this, "album cover", DEFAULT_ALBUM_COVER);
+	private final ObjectProperty<Image> albumCover = new SimpleObjectProperty<Image>(this, "album cover", null);	// Null album cover handled in Controller
 
     //Song Constructor
 	public Song(String fileLocation){
@@ -93,18 +89,4 @@ public class Song {
 	public IntegerProperty getLength(){
 		return length;
 	}
-	
-	/*
-	public static Image generateImage(int width, int height) {
-	    WritableImage img = new WritableImage(width, height);
-	    PixelWriter pw = img.getPixelWriter();
-	    Double gray = 120.0 / 255.0;
-	    Color color = new Color(gray, gray, gray, 0.85);
-	    for(int x = 0; x < width; x++) {
-	    	for(int y = 0; y < height; y++) {
-	    	    pw.setColor(x, y, color);
-		    }
-	    }
-	    return img ;
-	}*/
 }

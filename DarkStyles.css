@@ -1,52 +1,55 @@
-/* DARK MODE PALETTE:
-	Darkest: 		#1C1C1C					Song Menu Grid
-	Dark:			#414141					Top/Bottom Bar
-	Light:			#7D7D7D					Song Button
-	Lightest:		#E6E6E6					Primary Text
-	Button Color:	#B65359 (Pink/Red)		Player Button
-	Button Offset:	#c9474e (Pink/Red)		Player Button
+/* 
+ 	-------DARK MODE PALETTE------
+
+	Name:					Color:
+
+	Song Menu Grid			#141414;
+	Top/Bottom Bar			#181818;
+
+	Song Button				#414141;
+	Song Button Offset		#414141;
+
+	Control Button			#414141;
+	Control Button Offset	#414141;
+	Control Button Outline	#414141;
+	
+	Album Cover				#ECECEC;
+	Album Cover Offset		#DDDDDD;
+
+	Primary Text			#ECECEC;
+	Secondary Text			#DDDDDD;
+
 */
 
 .root {
-/* Color Palette:  */
-  -fx-menu-color: #414141;					/* Background Color of Top/Bottom Bar */
-  -fx-albumcover-color: #909090;
-  -fx-albumcover-color-offset: #606060;
-  -fx-song-menu-color: #1C1C1C;				/* Background Color of Song Button Area */ 
-  -fx-player-button-color: #B65359;			/* Player Button Color, used on Play/Pause, Next, Back Buttons  */
-  -fx-player-button-offset: #c9474e;
-  -fx-song-button-color: #7D7D7D;
-  -fx-song-button-offset: #B65359;
-  -fx-text-color: #E6E6E6;
-  -fx-text-offset: #E6E6E6;
-  -fx-outline-color: #171717;
-  
-  /* Defaults (Inherited Properties) */
-  -fx-font-family: monospace;
-  
-}
-
-#AddMP3Button{
-	-fx-text-fill: -fx-text-color;
-	-fx-text-alignment: center;
-	-fx-font-weight: bolder;
-	-fx-font-size: 20px;
-	-fx-padding: 2, 5, 2, 5;				/* Padding: top, right, bottom, and left */
+	-fx-song-menu: #141414;
+	-fx-menu: #181818;
 	
-	-fx-background-color: -fx-player-button-color;
-	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
-	-fx-background-radius: 4;
-	-fx-background-insets: 0, 1, 2, 1;	
+	-fx-button: #282828;
+	-fx-button-offset: #26302E;
+	
+	-fx-control-button: #172E2E;
+	-fx-control-button-offset: #18332A;
+	-fx-control-button-outline: #282828;
+	
+	
+	-fx-text: #ECECEC;
+	-fx-text-secondary: #DDDDDD;
+
+	-fx-album-cover: #172E2E;
+	-fx-album-cover-offset: #18332A;
+  
+  	-fx-infinite-value: 100000000000;
+  	
+  	/* Default Font */
+  	-fx-font-family: monospace;
 }
 
-#AddMP3Button:hover{
-	-fx-background-color: -fx-player-button-offset;
-	-fx-effect: dropshadow(gaussian, -fx-song-button-offset, 8, 0.3, 0.0, 0.0);
-	-fx-text-fill: -fx-text-offset;
-}
+
+/* BASIC STYLING */
 
 #TopBar{
-	-fx-background-color: -fx-menu-color;
+	-fx-background-color: -fx-menu;
 	-fx-padding: 5px;
 	
 	-fx-pref-height: 32px;
@@ -54,48 +57,21 @@
 }
 
 #SongMenu{
-	-fx-background-color: -fx-song-menu-color;
+	-fx-background-color: -fx-song-menu;
 	-fx-vgap: 5px;
 	-fx-padding: 5 5 0 5;
 }
 
 
 #BottomBar{
-	-fx-background-color: -fx-menu-color;
+	-fx-background-color: -fx-menu;
 }
 
-/* The SongButtonLabel controls the SongButtons */
-#SongButtonLabel{
-	-fx-background-color: -fx-song-button-color;
-	-fx-background-radius: 3;
-	-fx-effect: dropshadow(gaussian, -fx-song-button-color, 5, 0.2, 0.0, 0.0);
-	-fx-padding: 0 5 0 5;
 
-	-fx-pref-height: 32px;
-}
-
-/* Special hover to deal with StackPane SongButtons */
-#SongButton:hover #SongButtonLabel{
-	-fx-background-color: -fx-song-button-offset;
-	-fx-effect: dropshadow(gaussian, -fx-song-button-offset, 8, 0.3, 0.0, 0.0);
-	-fx-text-fill: -fx-text-offset;
-}
-
-.scroll-pane{
-	-fx-background-color: -fx-song-menu-color;
-}
-
-#grid{
-	-fx-vgap: 5px;
-	-fx-hgap: 20px;
-	-fx-alignment: center-left;
-	
-	-fx-padding: 5px;
-	-fx-max-height: 32px;
-}
+/* TEXT CSS */
 
 .label{
-	-fx-text-fill: -fx-text-color;
+	-fx-text-fill: -fx-text;
 	-fx-text-alignment: left;
 	-fx-font-weight: bolder;
 	-fx-font-size: 20px;
@@ -103,69 +79,57 @@
 	-fx-pref-height: 32px;
 }
 
-#TimeLabel{
-	-fx-text-fill: -fx-text-color;
+#durationText{
+	-fx-text-fill: -fx-text;
 	-fx-alignment: center;
 	-fx-text-alignment: center;
 	-fx-font-weight: bolder;
-	-fx-font-size: 20px;
+	-fx-font-size: 22px;
 	
-	-fx-max-width: 60px;
 	-fx-pref-height: 32px;
+	-fx-max-height: 32px;
 }
 
-#PlayerButton{
-	-fx-background-color: -fx-player-button-color;
-	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
-	-fx-pref-width: 32px;
-	-fx-pref-height: 32px;
-	-fx-min-width: 32px;
-	-fx-min-height: 32px;
-	
-	-fx-text-fill: rgba(0,0,0,0)	/* Make Text Invisible */
-}
-
-#PlayerButton:hover{
-	-fx-background-color: -fx-player-button-offset;
-	-fx-effect: dropshadow(gaussian, -fx-player-button-offset, 8, 0.3, 0.0, 0.0);
-	-fx-scale-y: 1.35;
-    -fx-scale-x: 1.35;
-    
-    -fx-opacity: 75%;
-}
+/* PROGRESS BAR STYLING */
 
 .progress-bar{
-	-fx-alignment: center;
-	-fx-vertical-alignment: center;
-	-fx-background-color: -fx-song-button-color;
+	-fx-background-color: -fx-button;
 	-fx-background-radius: 4;
 	-fx-background-insets: 0, 1, 2, 1;
-	-fx-border-color: -fx-outline-color;
+	-fx-border-color: -fx-control-button-outline;
 	-fx-border-style: solid;
 	-fx-border-width: 3;
 	-fx-border-radius: 3;
+	-fx-pref-width: -fx-infinite-value;
 }
 
 .progress-bar .bar {
-	-fx-background-color: -fx-song-button-offset;
+	-fx-background-color: -fx-button-offset;
 	-fx-background-radius: 3;
 	-fx-background-insets: 0, 1, 2, 1;
-	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
-    -fx-padding: 8px; 
+	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
+    -fx-padding: 8, 0, 8, 0;
 }
 
+/* SCROLL BAR STYLING */
+.scroll-pane{
+	-fx-background-color: -fx-song-menu;
+}
+
+/* ALBUM COVER CSS */
+
 #albumCover{
-	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
+	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
 }
 
 #albumStack{
-	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
-	-fx-background-insets: 5px;
+	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
+	-fx-background-insets: 5, 0, 5, 5;
 	-fx-alignment: center;
 }
 
 #albumCoverDefaultLabel{
-	-fx-text-fill: -fx-text-color;
+	-fx-text-fill: -fx-text;
 	-fx-alignment: center;
 	-fx-text-alignment: center;
 	-fx-font-weight: bolder;
@@ -173,8 +137,105 @@
 }
 
 #albumCoverDefaultColor{
-	-fx-effect: dropshadow(gaussian, -fx-player-button-color, 5, 0.2, 0.0, 0.0);
-	-fx-background-insets: 5px;
+	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
+	-fx-background-insets: 5, 0, 5, 5;
 	-fx-alignment: center;
-	-fx-background-color: radial-gradient(center 50% 50%, radius 83%, -fx-albumcover-color-offset, -fx-albumcover-color);
+	-fx-background-color: radial-gradient(center 50% 50%, radius 83%, -fx-album-cover-offset, -fx-album-cover);
 }
+
+
+/* BUTTON STYLING */
+
+#SongButtonLabel{
+	-fx-background-color: -fx-button;
+	-fx-background-radius: 3;
+	-fx-effect: dropshadow(gaussian, -fx-button, 5, 0.2, 0.0, 0.0);
+	-fx-padding: 0 5 0 5;
+
+	-fx-pref-height: 32px;
+}
+
+#SongButton:hover #SongButtonLabel{
+	-fx-background-color: -fx-button-offset;
+	-fx-effect: dropshadow(gaussian, -fx-button-offset, 8, 0.3, 0.0, 0.0);
+	-fx-text-fill: -fx-text-offset;
+}
+
+#addSongButton{
+	-fx-text-fill: -fx-text;
+	-fx-alignment: center;
+	-fx-font-weight: bolder;
+	-fx-font-size: 20px;
+	
+	-fx-background-color: -fx-control-button;
+	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
+	-fx-background-radius: 4;
+}
+
+#addSongButton:hover{
+	-fx-background-color: -fx-control-button-offset;
+	-fx-effect: dropshadow(gaussian, -fx-button-offset, 8, 0.3, 0.0, 0.0);
+}
+
+#backButton{
+	-fx-background-color: -fx-control-button;
+	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
+	-fx-pref-width: 52px;
+	-fx-pref-height: 52px;
+	-fx-min-width: 52px;
+	-fx-min-height: 52px;
+	-fx-shape: "M 80 80 L 80 20 L 20 50 L 80 80 m -30 -30 L 80 35 L 80 65 Z";
+}
+
+#backButton:hover{
+	-fx-background-color: -fx-control-button-offset;
+	-fx-effect: dropshadow(gaussian, -fx-control-button-offset, 8, 0.3, 0.0, 0.0);
+	-fx-scale-y: 1.35;
+    -fx-scale-x: 1.35;
+    
+    -fx-opacity: 75%;
+}
+
+#playButton{
+	-fx-background-color: -fx-control-button;
+	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
+	-fx-pref-width: 52px;
+	-fx-pref-height: 52px;
+	-fx-min-width: 52px;
+	-fx-min-height: 52px;
+ /* -fx-shape: "M 20 20 L 20 80 L 80 50 L 20 20 Z"; Unnecessary Button Shape Handled by Controller */
+}
+
+#playButton:hover{
+	-fx-background-color: -fx-control-button-offset;
+	-fx-effect: dropshadow(gaussian, -fx-control-button-offset, 8, 0.3, 0.0, 0.0);
+	-fx-scale-y: 1.35;
+    -fx-scale-x: 1.35;
+    
+    -fx-opacity: 75%;
+}
+
+#nextButton{
+	-fx-background-color: -fx-control-button;
+	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
+	-fx-pref-width: 52px;
+	-fx-pref-height: 52px;
+	-fx-min-width: 52px;
+	-fx-min-height: 52px;
+	-fx-shape: "M 20 20 L 20 80 L 80 50 L 20 20 m 30 30 L 20 65 L 20 35 Z";
+}
+
+#nextButton:hover{
+	-fx-background-color: -fx-control-button-offset;
+	-fx-effect: dropshadow(gaussian, -fx-control-button-offset, 8, 0.3, 0.0, 0.0);
+	-fx-scale-y: 1.35;
+    -fx-scale-x: 1.35;
+    
+    -fx-opacity: 75%;
+}
+
+#volumeSlider{
+	
+}
+
+

@@ -8,8 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /*
-		Data Model: 	Model represents an object carrying data. 
-						It can also have logic to update controller if its data changes.
+	Data Model:	Model represents an object carrying data, in this case a List of Song Objects.
  */
 
 public class SongList {
@@ -53,5 +52,6 @@ public class SongList {
     	}
     }
     
+    /* FOR IMPLMENTING A SAVING FEATURE IN FUTURE */
     //public void saveData(File file) { }
 }
