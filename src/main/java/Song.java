@@ -1,19 +1,19 @@
 
 import java.io.File;
 
-import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.MapChangeListener;
 import javafx.scene.image.Image;
-import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 /*
 	Model: Model represents an object carrying data. It can also have logic to update controller if its data changes.
@@ -30,7 +30,8 @@ public class Song {
 	private final StringProperty title = new SimpleStringProperty(this, "title", "");
 	private final StringProperty album = new SimpleStringProperty(this, "album", "");
 
-	private final IntegerProperty length = new SimpleIntegerProperty(0);
+	private final StringProperty totalDurationString = new SimpleStringProperty(this, "totalDurationString", "0:00");
+	
 	private final ObjectProperty<Image> albumCover = new SimpleObjectProperty<Image>(this, "album cover", null);	// Null album cover handled in Controller
 
     //Song Constructor
@@ -47,6 +48,14 @@ public class Song {
    	        }
    	    });
    	    this.mediaPlayer.set(new MediaPlayer(media.get()));
+
+   	    // Bind the totalDuration
+   	    this.mediaPlayer.get().totalDurationProperty().addListener(new ChangeListener<Duration>() {
+   	    	public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
+   	    		int seconds = (int) mediaPlayer.get().getTotalDuration().toSeconds();
+   	    		totalDurationString.set("" + (seconds / 60) + ":" + ((seconds % 60) == 0 ? "00" : "" + (seconds % 60)));
+			}
+	    });
    	}
 	
 	private void bindProperty(String key, Object value){
@@ -70,6 +79,9 @@ public class Song {
 	public ObjectProperty<MediaPlayer> getMediaPlayer() {
 		return mediaPlayer;
 	}
+	public ObjectProperty<Media> getMedia() {
+		return media;
+	}
 	public StringProperty getArtist(){
 		return artist;
 	}
@@ -82,11 +94,7 @@ public class Song {
 	public ObjectProperty<Image> getAlbumCover(){
 		return albumCover;
 	}
-	public StringProperty getLengthString(){
-		String seconds = (length.get() % 60) == 0 ? "00" : "" + (length.get() % 60);
-		return new SimpleStringProperty("" + (length.get() / 60) + ":" + seconds);
-	}
-	public IntegerProperty getLength(){
-		return length;
+	public StringProperty getTotalDurationString(){
+		return totalDurationString;
 	}
 }

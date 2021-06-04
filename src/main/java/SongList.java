@@ -18,7 +18,7 @@ public class SongList {
     private final ObservableList<Song> songList = FXCollections.observableArrayList(song -> new Observable[] {
     	song.getTitle(),
     	song.getArtist(),
-    	song.getLengthString(),
+    	song.getTotalDurationString(),
     	song.getMediaPlayer()
     });
 
@@ -28,6 +28,11 @@ public class SongList {
         return currentSong;
     }
 
+    // Helper Method for Ease of Use
+    public final boolean isCurrentSongEmpty(){
+    	return currentSong.get() == null ? true : false;
+    }
+    
     // Getter For Current Song
     public final Song getCurrentSong() {
         return currentSongProperty().get();
@@ -41,7 +46,6 @@ public class SongList {
     public ObservableList<Song> getSongList() {
         return songList;
     }
-    
     
     // Load Data From ./Music File
     public void loadMusicFromFolder(){

@@ -12,12 +12,12 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.paint.Color?>
 
-<BorderPane fx:controller="Controller" xmlns:fx="http://javafx.com/fxml" prefHeight="480" prefWidth="640">
+<BorderPane fx:id="root" fx:controller="Controller" xmlns:fx="http://javafx.com/fxml" prefHeight="480" prefWidth="640">
   
     <!-- Top Menu Bar -->
     <top>
         <HBox id="TopBar" prefHeight="32" prefWidth="${root.prefWidth}">
-        	<Button fx:id="addSongButton" prefHeight="24.0" maxHeight="32.0" prefWidth="150.0"/>
+        	<Button fx:id="addSongButton" onAction="#handleAddSongButton" prefHeight="28.0" maxHeight="32.0" prefWidth="160.0"/>
         </HBox>
     </top>
     
@@ -25,15 +25,15 @@
     <bottom>
     	<HBox id="BottomBar" maxHeight="128.0" prefHeight="128.0" prefWidth="${root.prefWidth}">
 			<!-- Album Cover -->
-			<StackPane id="albumStack" maxHeight="128.0" maxWidth="128.0" minHeight="128.0" minWidth="128.0">
+			<StackPane id="albumStackDefault" maxHeight="128.0" maxWidth="128.0" minHeight="128.0" minWidth="128.0">
 				<ImageView fx:id="albumCover" fitHeight="118.0" fitWidth="118.0"/>
 				<Label fx:id="albumLabel" id="albumCoverDefaultLabel"/>
 			</StackPane>
 				
 			<!-- Right Side of Bottom Bar  -->
-			<VBox fx:id="vboxSettings">
+			<VBox>
 				<!-- DurationBar -->
-				<GridPane fx:id="DurationBar" maxHeight="36.0" minHeight="36.0" prefHeight="36.0">
+				<GridPane fx:id="DurationBar" maxHeight="32.0" minHeight="32.0" prefHeight="32.0" style="-fx-padding: 0 5 0 0;">
 				
 					<!-- DurationBar Constraints  -->
 					<columnConstraints>
@@ -43,7 +43,7 @@
 					</columnConstraints>
 						
 					<Label fx:id="currDuration" id="durationText" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-					<ProgressBar fx:id="durationProgress" id="songDurationBar" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+					<ProgressBar fx:id="durationProgress" id="songDurationBar" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 					<Label fx:id="totalDuration" id="durationText" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
 				</GridPane>
 
@@ -53,21 +53,48 @@
 					<!-- ControlBar Constraints  -->
 					<columnConstraints>
 						<ColumnConstraints halignment="CENTER" hgrow="ALWAYS"/>
-						<ColumnConstraints halignment="CENTER" prefWidth="64.0" minWidth="64.0" hgrow="NEVER"/>
-						<ColumnConstraints halignment="CENTER" prefWidth="64.0" minWidth="64.0" hgrow="NEVER"/>
-						<ColumnConstraints halignment="CENTER" prefWidth="64.0" minWidth="64.0" hgrow="NEVER"/>
-						<ColumnConstraints halignment="CENTER" prefWidth="128.0" minWidth="128.0" hgrow="NEVER"/>
+						<ColumnConstraints halignment="CENTER" percentWidth="40.0" hgrow="NEVER"/>
+						<ColumnConstraints halignment="CENTER" percentWidth="20.0" hgrow="NEVER"/>
 					</columnConstraints>
+
+					<rowConstraints>
+						<RowConstraints prefHeight="96.0" minHeight="96.0" valignment="CENTER" vgrow="ALWAYS"/>
+					</rowConstraints>
+
+					<StackPane GridPane.columnIndex="0" GridPane.rowIndex="0">
+						<GridPane style="-fx-padding: 0 0 0 5;">
+							<rowConstraints>
+								<RowConstraints valignment="CENTER" vgrow="ALWAYS"/>
+								<RowConstraints valignment="TOP" vgrow="ALWAYS"/>
+							</rowConstraints>
 					
-					<VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
-						<Label fx:id="titleLabel"/>
-						<Label fx:id="artistLabel"/>
-					</VBox>
+							<Label fx:id="titleLabel" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+							<Label fx:id="artistLabel" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+						</GridPane>
+					</StackPane>
 					
-					<Button fx:id="backButton" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-					<Button fx:id="playButton" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-					<Button fx:id="nextButton" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-					<Slider fx:id="volumeSlider" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+					<StackPane GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="128.0" >
+						<GridPane>
+							<!-- Control Button Constraints  -->
+							<columnConstraints>
+								<ColumnConstraints halignment="CENTER" minWidth="64.0" hgrow="ALWAYS"/>
+								<ColumnConstraints halignment="CENTER" minWidth="64.0" hgrow="ALWAYS"/>
+								<ColumnConstraints halignment="CENTER" minWidth="64.0" hgrow="ALWAYS"/>
+							</columnConstraints>
+							
+							<rowConstraints>
+								<RowConstraints valignment="CENTER" vgrow="ALWAYS"/>
+							</rowConstraints>
+							
+							<Button fx:id="backButton" onAction="#handleBackButton" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+							<Button fx:id="playButton" onAction="#handlePlayButton" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+							<Button fx:id="nextButton" onAction="#handleNextButton" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+						</GridPane>
+					</StackPane>
+					
+					<StackPane fx:id="volumeStack" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-padding: 0 10 0 0;">
+						<Slider fx:id="volumeSlider" minWidth="64.0" maxWidth="164.0"/>
+					</StackPane>
 				</GridPane>
 			</VBox> 
     	</HBox>

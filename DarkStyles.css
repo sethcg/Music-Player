@@ -22,23 +22,26 @@
 */
 
 .root {
+	/* JUNGLE GREEN PALETTE */
+	-fx-outline: #090909;
+	
 	-fx-song-menu: #141414;
 	-fx-menu: #181818;
-	
+
 	-fx-button: #282828;
-	-fx-button-offset: #26302E;
 	
-	-fx-control-button: #172E2E;
-	-fx-control-button-offset: #18332A;
-	-fx-control-button-outline: #282828;
-	
+	-fx-accent: #305757;
+	-fx-accent-offset: #275747;
 	
 	-fx-text: #ECECEC;
 	-fx-text-secondary: #DDDDDD;
 
-	-fx-album-cover: #172E2E;
-	-fx-album-cover-offset: #18332A;
-  
+	-fx-album-cover: #314d4d;
+	-fx-album-cover-offset: #2f594c;
+	
+	-fx-slider-track: #6a8a7f;
+	
+
   	-fx-infinite-value: 100000000000;
   	
   	/* Default Font */
@@ -79,6 +82,17 @@
 	-fx-pref-height: 32px;
 }
 
+#SongDescription{
+	-fx-border-color: red;
+	-fx-border-width: 2;
+	
+	-fx-alignment: center;
+	-fx-text-fill: -fx-text;
+	-fx-text-alignment: left;
+	-fx-font-weight: bolder;
+	-fx-font-size: 20px;
+}
+
 #durationText{
 	-fx-text-fill: -fx-text;
 	-fx-alignment: center;
@@ -96,7 +110,7 @@
 	-fx-background-color: -fx-button;
 	-fx-background-radius: 4;
 	-fx-background-insets: 0, 1, 2, 1;
-	-fx-border-color: -fx-control-button-outline;
+	-fx-border-color: -fx-outline;
 	-fx-border-style: solid;
 	-fx-border-width: 3;
 	-fx-border-radius: 3;
@@ -104,10 +118,10 @@
 }
 
 .progress-bar .bar {
-	-fx-background-color: -fx-button-offset;
+	-fx-background-color: -fx-accent;
 	-fx-background-radius: 3;
 	-fx-background-insets: 0, 1, 2, 1;
-	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
+	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
     -fx-padding: 8, 0, 8, 0;
 }
 
@@ -116,16 +130,10 @@
 	-fx-background-color: -fx-song-menu;
 }
 
-/* ALBUM COVER CSS */
+/* ALBUM COVER STYLING */
 
 #albumCover{
-	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
-}
-
-#albumStack{
-	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
-	-fx-background-insets: 5, 0, 5, 5;
-	-fx-alignment: center;
+	-fx-effect: dropshadow(gaussian, -fx-accent, 8, 0.3, 0.0, 0.0);
 }
 
 #albumCoverDefaultLabel{
@@ -136,9 +144,10 @@
 	-fx-font-size: 120px;
 }
 
-#albumCoverDefaultColor{
-	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
+#albumStackDefault{
+	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.3, 0.0, 0.0);
 	-fx-background-insets: 5, 0, 5, 5;
+	-fx-background-radius: 4;
 	-fx-alignment: center;
 	-fx-background-color: radial-gradient(center 50% 50%, radius 83%, -fx-album-cover-offset, -fx-album-cover);
 }
@@ -156,8 +165,8 @@
 }
 
 #SongButton:hover #SongButtonLabel{
-	-fx-background-color: -fx-button-offset;
-	-fx-effect: dropshadow(gaussian, -fx-button-offset, 8, 0.3, 0.0, 0.0);
+	-fx-background-color: -fx-accent;
+	-fx-effect: dropshadow(gaussian, -fx-accent, 8, 0.3, 0.0, 0.0);
 	-fx-text-fill: -fx-text-offset;
 }
 
@@ -167,29 +176,27 @@
 	-fx-font-weight: bolder;
 	-fx-font-size: 20px;
 	
-	-fx-background-color: -fx-control-button;
-	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
+	-fx-background-color: -fx-accent;
+	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
 	-fx-background-radius: 4;
 }
 
 #addSongButton:hover{
-	-fx-background-color: -fx-control-button-offset;
-	-fx-effect: dropshadow(gaussian, -fx-button-offset, 8, 0.3, 0.0, 0.0);
+	-fx-background-color: -fx-accent-offset;
+	-fx-effect: dropshadow(gaussian, -fx-accent, 8, 0.3, 0.0, 0.0);
 }
 
 #backButton{
-	-fx-background-color: -fx-control-button;
-	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
-	-fx-pref-width: 52px;
-	-fx-pref-height: 52px;
+	-fx-background-color: -fx-accent;
+	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
 	-fx-min-width: 52px;
 	-fx-min-height: 52px;
 	-fx-shape: "M 80 80 L 80 20 L 20 50 L 80 80 m -30 -30 L 80 35 L 80 65 Z";
 }
 
 #backButton:hover{
-	-fx-background-color: -fx-control-button-offset;
-	-fx-effect: dropshadow(gaussian, -fx-control-button-offset, 8, 0.3, 0.0, 0.0);
+	-fx-background-color: -fx-accent-offset;
+	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
 	-fx-scale-y: 1.35;
     -fx-scale-x: 1.35;
     
@@ -197,18 +204,15 @@
 }
 
 #playButton{
-	-fx-background-color: -fx-control-button;
-	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
-	-fx-pref-width: 52px;
-	-fx-pref-height: 52px;
+	-fx-background-color: -fx-accent;
+	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
 	-fx-min-width: 52px;
 	-fx-min-height: 52px;
- /* -fx-shape: "M 20 20 L 20 80 L 80 50 L 20 20 Z"; Unnecessary Button Shape Handled by Controller */
 }
 
 #playButton:hover{
-	-fx-background-color: -fx-control-button-offset;
-	-fx-effect: dropshadow(gaussian, -fx-control-button-offset, 8, 0.3, 0.0, 0.0);
+	-fx-background-color: -fx-accent-offset;
+	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
 	-fx-scale-y: 1.35;
     -fx-scale-x: 1.35;
     
@@ -216,26 +220,38 @@
 }
 
 #nextButton{
-	-fx-background-color: -fx-control-button;
-	-fx-effect: dropshadow(gaussian, -fx-control-button, 5, 0.2, 0.0, 0.0);
-	-fx-pref-width: 52px;
-	-fx-pref-height: 52px;
+	-fx-background-color: -fx-accent;
+	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
 	-fx-min-width: 52px;
 	-fx-min-height: 52px;
 	-fx-shape: "M 20 20 L 20 80 L 80 50 L 20 20 m 30 30 L 20 65 L 20 35 Z";
 }
 
 #nextButton:hover{
-	-fx-background-color: -fx-control-button-offset;
-	-fx-effect: dropshadow(gaussian, -fx-control-button-offset, 8, 0.3, 0.0, 0.0);
+	-fx-background-color: -fx-accent-offset;
+	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
 	-fx-scale-y: 1.35;
     -fx-scale-x: 1.35;
     
     -fx-opacity: 75%;
 }
 
-#volumeSlider{
-	
+#volumeSlider .track {
+    -fx-background-color: -fx-slider-track;
+ /* -fx-background-insets: 0 0 -1 0, 0, 1; */
+    -fx-background-radius: 3, 3, 2;
+    -fx-padding: 5;
+}
+
+#volumeSlider .thumb {
+     -fx-background-color: -fx-accent-offset;
+     -fx-effect: dropshadow(gaussian, -fx-accent-offset, 4, 0.2, 0.0, 0.0);
+     -fx-background-radius: 12;
+     -fx-pref-height: 22;
+     -fx-pref-width: 22;
+     -fx-border-color: -fx-outline;
+     -fx-border-radius: 10;
+     -fx-border-width: 3;
 }
 
 
