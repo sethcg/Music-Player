@@ -40,6 +40,7 @@
 	-fx-album-cover-offset: #2f594c;
 	
 	-fx-slider-track: #6a8a7f;
+	-fx-scrollbar-track: #6a8a7f;
 	
 
   	-fx-infinite-value: 100000000000;
@@ -125,10 +126,31 @@
     -fx-padding: 8, 0, 8, 0;
 }
 
+
 /* SCROLL BAR STYLING */
-.scroll-pane{
+
+#SongScrollPane{
 	-fx-background-color: -fx-song-menu;
 }
+
+#SongScrollPane .scroll-bar:vertical .track{
+    -fx-background-color :transparent;
+    -fx-border-color :transparent;
+}
+
+#SongScrollPane .scroll-bar:vertical .thumb{
+	 -fx-background-color: -fx-accent-offset;
+     -fx-effect: dropshadow(gaussian, -fx-accent-offset, 4, 0.2, 0.0, 0.0);
+     -fx-background-insets : 2, 0, 0;
+     -fx-background-radius: 12;
+}
+
+#SongScrollPane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color : -fx-accent-offset;
+    -fx-background-insets : 2, 0, 0;
+    -fx-background-radius : 12;
+}
+
 
 /* ALBUM COVER STYLING */
 
@@ -237,7 +259,7 @@
 }
 
 #volumeSlider .track {
-    -fx-background-color: -fx-slider-track;
+    -fx-background-color: linear-gradient(to right, -fx-accent 50%, -fx-slider-track 50%);
  /* -fx-background-insets: 0 0 -1 0, 0, 1; */
     -fx-background-radius: 3, 3, 2;
     -fx-padding: 5;

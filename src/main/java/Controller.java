@@ -72,12 +72,13 @@ public class Controller {
     	
     	// Initialize Volume Slider
     	volumeSlider.setMax(100);
-    	volumeSlider.setValue(0);
+    	volumeSlider.setValue(50);		// Start at 50% Volume (Gradient must also be set in CSS Styles)
     	volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
     		public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
                 String style = String.format("-fx-background-color: linear-gradient(to right, -fx-accent %d%%, -fx-slider-track %d%%);",
                 		newValue.intValue(), newValue.intValue());
                 volumeSlider.lookup(".track").setStyle(style);
+                mediaPlayer.setVolume(volumeSlider.getValue() / 100.0);
             }
         });
     	
@@ -124,7 +125,6 @@ public class Controller {
     		case PLAYING:
     			mediaPlayer.pause();
     			playButton.setStyle("-fx-shape: '" + playShape + "';");
-    	    	System.out.println("Paused at: " + mediaPlayer.getCurrentTime());
     			break;
     		default:
     			break;
