@@ -30,17 +30,13 @@
 
 	-fx-button: #282828;
 	
-	-fx-accent: #305757;
-	-fx-accent-offset: #275747;
+	-fx-accent: #275747;
+	-fx-accent-offset: #276447;
 	
 	-fx-text: #ECECEC;
 	-fx-text-secondary: #DDDDDD;
-
-	-fx-album-cover: #314d4d;
-	-fx-album-cover-offset: #2f594c;
 	
-	-fx-slider-track: #6a8a7f;
-	-fx-scrollbar-track: #6a8a7f;
+	-fx-slider-track: derive(-fx-accent, 75%);
 	
 
   	-fx-infinite-value: 100000000000;
@@ -173,7 +169,7 @@
 /* ALBUM COVER STYLING */
 
 #albumCover{
-	-fx-effect: dropshadow(gaussian, -fx-accent, 8, 0.3, 0.0, 0.0);
+	-fx-effect: dropshadow(gaussian, -fx-accent, 8, 0.5, 0.0, 0.0);
 }
 
 #albumCoverDefaultLabel{
@@ -189,7 +185,7 @@
 	-fx-background-insets: 5, 0, 5, 5;
 	-fx-background-radius: 4;
 	-fx-alignment: center;
-	-fx-background-color: radial-gradient(center 50% 50%, radius 83%, -fx-album-cover-offset, -fx-album-cover);
+	-fx-background-color: radial-gradient(center 50% 50%, radius 83%, derive(-fx-accent-offset, -7%), derive(-fx-accent, 9%));
 }
 
 
@@ -204,7 +200,16 @@
 	-fx-pref-height: 32px;
 }
 
-#SongButton:hover #SongButtonLabel{
+#SongButtonLabelPlaying{
+	-fx-background-color: -fx-accent-offset;
+	-fx-background-radius: 3;
+	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 10, 0.5, 0.0, 0.0);
+	-fx-padding: 0 5 0 5;
+
+	-fx-pref-height: 32px;
+}
+
+#SongStack:hover #SongButtonLabel{
 	-fx-background-color: -fx-accent;
 	-fx-effect: dropshadow(gaussian, -fx-accent, 8, 0.3, 0.0, 0.0);
 	-fx-text-fill: -fx-text-offset;
@@ -260,14 +265,14 @@
 }
 
 #closeButton{
-	-fx-background-color: -fx-accent;
-	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
+	-fx-background-color: derive(-fx-accent, 15%);
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent, 15%), 5, 0.2, 0.0, 0.0);
 	-fx-shape: "M 5 0 L 20 15 L 35 0 L 40 5 L 25 20 L 40 35 L 35 40 L 20 25 L 5 40 L 0 35 L 15 20 L 0 5 Z";
 }
 
 #closeButton:hover{
-	-fx-background-color: -fx-accent-offset;
-	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
+	-fx-background-color: derive(-fx-accent-offset, 15%);
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent-offset, 15%), 8, 0.3, 0.0, 0.0);
 	-fx-scale-y: 1.35;
     -fx-scale-x: 1.35;
     
@@ -275,14 +280,14 @@
 }
 
 #maxButton{
-	-fx-background-color: -fx-accent;
-	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
+	-fx-background-color: derive(-fx-accent, 10%);
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent, 10%), 5, 0.2, 0.0, 0.0);
 	-fx-shape: "M 0 0 L 0 40 L 40 40 L 40 0 m -5 5 L 35 35 L 5 35 L 5 5 Z";
 }
 
 #maxButton:hover{
-	-fx-background-color: -fx-accent-offset;
-	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
+	-fx-background-color: derive(-fx-accent-offset, 15%);
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent-offset, 15%), 8, 0.3, 0.0, 0.0);
 	-fx-scale-y: 1.35;
     -fx-scale-x: 1.35;
     
@@ -290,15 +295,15 @@
 }
 
 #minButton{
-	-fx-background-color: -fx-accent;
-	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
+	-fx-background-color: derive(-fx-accent, 15%);
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent, 15%), 5, 0.2, 0.0, 0.0);
 	-fx-shape: "M 0 18 L 40 18 L 40 22 L 0 22 Z";
 	-fx-scale-y: 0.3;
 }
 
 #minButton:hover{
-	-fx-background-color: -fx-accent-offset;
-	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
+	-fx-background-color: derive(-fx-accent-offset, 15%);
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent-offset, 15%), 8, 0.3, 0.0, 0.0);
 	-fx-scale-y: 0.65;
     -fx-scale-x: 1.35;
     

@@ -23,10 +23,13 @@ public class SongButtonHelper {
         for(int i = 0; i < songlist.getSongList().size(); i++){
         	// Place SongLabel and SongButton on top of each other
         	StackPane buttonStack = new StackPane();
-        	buttonStack.setId("SongButton");
+        	buttonStack.setId("SongStack");
         	buttonStack.getChildren().add(addSongLabel(songlist.getSongList().get(i)));
         	buttonStack.getChildren().add(addSongButton(songlist.getSongList().get(i), controller));
         	grid.add(buttonStack, 0, i);
+        	
+        	// Update the referenced songStack in song
+        	songlist.getSongList().get(i).setSongStack(buttonStack);
         }
 
         // SongMenu ScrollBar
@@ -41,8 +44,9 @@ public class SongButtonHelper {
     // Add Button to Complex Song Button
     public static Button addSongButton(Song song, Controller controller){
         Button songButton = new Button();
+        songButton.setId("SongButton");
         songButton.setOnAction(new EventHandler<ActionEvent>() {
-	        public void handle(ActionEvent t) {
+	        public void handle(ActionEvent event) {
 	        	controller.handleMiddleSongButton(song);
 	        }
 	    });

@@ -9,6 +9,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.MapChangeListener;
 import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -21,6 +22,8 @@ public class Song {
 
 	// JavaFX related Attributes
 	private final String path;
+	
+	private StackPane songStack = new StackPane();
 	
 	private final ObjectProperty<Media> media = new SimpleObjectProperty<Media>(this, "media", null);
 	private final ObjectProperty<MediaPlayer> mediaPlayer = new SimpleObjectProperty<MediaPlayer>(this, "mediaPlayer", null);
@@ -94,5 +97,12 @@ public class Song {
 	}
 	public StringProperty getTotalDurationString(){
 		return totalDurationString;
+	}
+	
+	public StackPane getSongStack() {
+		return songStack;
+	}
+	public void setSongStack(StackPane newStack) {
+		songStack = newStack;
 	}
 }

@@ -27,6 +27,7 @@ public class Controller {
 	private double xOffset = 0;
 	private double yOffset = 0;
 	private boolean canResize = false;
+	private StackPane prevSongStack = null;
 
 	private boolean hasPlayed = false;
 	private final static String playShape = "M 20 20 L 20 80 L 80 50 L 20 20 Z";
@@ -84,9 +85,9 @@ public class Controller {
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 if (event.getX() > App.stage.getWidth() - 12
-                        && event.getX() < App.stage.getWidth() + 12
-                        && event.getY() > App.stage.getHeight() - 12
-                        && event.getY() < App.stage.getHeight() + 12){
+                	&& event.getX() < App.stage.getWidth() + 12
+                	&& event.getY() > App.stage.getHeight() - 12
+                	&& event.getY() < App.stage.getHeight() + 12){
                     canResize = true;
                     x = App.stage.getWidth() - event.getX();
                     y = App.stage.getHeight() - event.getY();
@@ -144,7 +145,7 @@ public class Controller {
     
     /* METHODS FOR HANDLING BUTTONS */
     
-    protected void handleMiddleSongButton(Song song){
+    protected void handleMiddleSongButton(Song song){    	
     	hasPlayed = true;
     	mediaPlayer.stop();
     	changeSong(song);
@@ -261,6 +262,15 @@ public class Controller {
     /* ----------- HELPER METHODS FOR HANDLING BUTTONS  --------- */
     
 	public void changeSong(Song song){
+		// Update the previous SongButton and Current SongButton Style
+    	StackPane songStack = song.getSongStack();
+    	if(prevSongStack != null) {
+    		prevSongStack.lookup("#SongButtonLabelPlaying").setId("SongButtonLabel");
+    	}
+    	songStack.lookup("#SongButtonLabel").setId("SongButtonLabelPlaying");
+    	prevSongStack = songStack;
+    	
+    	// Change Song in MediaPlayer
     	playlist.setCurrentSong(song);
     	mediaPlayer = new MediaPlayer(playlist.getCurrentSong().getMedia().get());
         setImage(song);
