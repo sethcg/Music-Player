@@ -226,48 +226,14 @@
 	-fx-effect: dropshadow(gaussian, -fx-accent, 8, 0.3, 0.0, 0.0);
 }
 
-#backButton{
-	-fx-background-color: -fx-accent;
-	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
-	-fx-min-width: 52px;
-	-fx-min-height: 52px;
-	-fx-shape: "M 80 80 L 80 20 L 20 50 L 80 80 m -30 -30 L 80 35 L 80 65 Z";
-}
-
-#backButton:hover{
-	-fx-background-color: -fx-accent-offset;
-	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
-	-fx-scale-y: 1.35;
-    -fx-scale-x: 1.35;
-    
-    -fx-opacity: 75%;
-}
-
-#playButton{
+#ControlButton{
 	-fx-background-color: -fx-accent;
 	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
 	-fx-min-width: 52px;
 	-fx-min-height: 52px;
 }
 
-#playButton:hover{
-	-fx-background-color: -fx-accent-offset;
-	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
-	-fx-scale-y: 1.35;
-    -fx-scale-x: 1.35;
-    
-    -fx-opacity: 75%;
-}
-
-#nextButton{
-	-fx-background-color: -fx-accent;
-	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
-	-fx-min-width: 52px;
-	-fx-min-height: 52px;
-	-fx-shape: "M 20 20 L 20 80 L 80 50 L 20 20 m 30 30 L 20 65 L 20 35 Z";
-}
-
-#nextButton:hover{
+#ControlButton:hover{
 	-fx-background-color: -fx-accent-offset;
 	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
 	-fx-scale-y: 1.35;

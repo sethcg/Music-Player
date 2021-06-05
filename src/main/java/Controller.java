@@ -185,12 +185,13 @@ public class Controller {
     private void handleBackButton(){
     	if(hasPlayed) {
     		int currentSongIndex = playlist.getSongList().indexOf(playlist.getCurrentSong());
-    		if(currentSongIndex - 1 >= 0) {
-    			mediaPlayer.stop();
-    			changeSong(playlist.getSongList().get(currentSongIndex - 1));
-    			mediaPlayer.play();
-    			playButton.setStyle("-fx-shape: '" + pauseShape + "';");
+    		if(currentSongIndex - 1 >= 0 && (int) mediaPlayer.getCurrentTime().toSeconds() <= 3) {
+    			currentSongIndex--;
     		}
+    		mediaPlayer.stop();
+    		changeSong(playlist.getSongList().get(currentSongIndex));
+    		mediaPlayer.play();
+    		playButton.setStyle("-fx-shape: '" + pauseShape + "';");
     	}
     }
     
@@ -217,6 +218,8 @@ public class Controller {
     @FXML
     private void handleAddSongButton(){
     	System.out.println("add song button");
+    	// TEST FOR RANDOMIZING THE MIDDLE SONGS
+    	//root.setCenter(SongButtonHelper.addCenter(createRandomPlaylist(songlist), this));
     }
     
     

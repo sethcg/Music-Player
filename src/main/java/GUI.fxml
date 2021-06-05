@@ -101,9 +101,17 @@
 								<RowConstraints valignment="CENTER" vgrow="ALWAYS"/>
 							</rowConstraints>
 							
-							<Button fx:id="backButton" onAction="#handleBackButton" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-							<Button fx:id="playButton" onAction="#handlePlayButton" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-							<Button fx:id="nextButton" onAction="#handleNextButton" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+							<!-- Back Button -->
+							<Button fx:id="backButton" id="ControlButton" onAction="#handleBackButton" 
+									GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-shape: 'M 80 80 L 80 20 L 20 50 L 80 80 m -30 -30 L 80 35 L 80 65 Z'"/>
+									
+							<!-- Play Button -->
+							<Button fx:id="playButton" id="ControlButton" onAction="#handlePlayButton" 
+									GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+									
+							<!-- Next Button -->
+							<Button fx:id="nextButton" id="ControlButton" onAction="#handleNextButton" 
+									GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-shape: 'M 20 20 L 20 80 L 80 50 L 20 20 m 30 30 L 20 65 L 20 35 Z'"/>
 						</GridPane>
 					</StackPane>
 					
