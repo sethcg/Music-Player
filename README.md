@@ -3,7 +3,7 @@
 ## Description:
 This is a Music Player that takes in MP3 files from a local folder and displays controls for listening to the files. These songs are displayed on a visually pleasing GUI with back, play/pause, next, and volume controls. This project was a ton of fun to create, and I plan on adding more features to this project in the future.
 
-![Picture of Sorting Visual](https://i.imgur.com/ptU0ZLu.png)
+![Picture of Music Player](https://i.imgur.com/ptU0ZLu.png)
 
 ## Features
 - Java, FXML, CSS
