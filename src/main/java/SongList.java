@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 
 /*
 	Data Model:	Model represents an object carrying data, in this case a List of Song Objects.
- */
+*/
 
 public class SongList {
 

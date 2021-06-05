@@ -83,6 +83,24 @@
 	-fx-pref-height: 32px;
 }
 
+#titleLabel{
+	-fx-text-fill: -fx-text;
+	-fx-text-alignment: left;
+	-fx-font-weight: bolder;
+	-fx-font-size: 26px;
+	
+	-fx-pref-height: 32px;
+}
+
+#artistLabel{
+	-fx-text-fill: -fx-text;
+	-fx-text-alignment: left;
+	-fx-font-weight: bolder;
+	-fx-font-size: 26px;
+	
+	-fx-pref-height: 32px;
+}
+
 #SongDescription{
 	-fx-border-color: red;
 	-fx-border-width: 2;
@@ -139,7 +157,7 @@
 }
 
 #SongScrollPane .scroll-bar:vertical .thumb{
-	 -fx-background-color: -fx-accent-offset;
+	 -fx-background-color: -fx-accent;
      -fx-effect: dropshadow(gaussian, -fx-accent-offset, 4, 0.2, 0.0, 0.0);
      -fx-background-insets : 2, 0, 0;
      -fx-background-radius: 12;
@@ -260,7 +278,6 @@
 
 #volumeSlider .track {
     -fx-background-color: linear-gradient(to right, -fx-accent 50%, -fx-slider-track 50%);
- /* -fx-background-insets: 0 0 -1 0, 0, 1; */
     -fx-background-radius: 3, 3, 2;
     -fx-padding: 5;
 }
@@ -274,6 +291,66 @@
      -fx-border-color: -fx-outline;
      -fx-border-radius: 10;
      -fx-border-width: 3;
+}
+
+#closeButton{
+	-fx-background-color: -fx-accent;
+	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
+	-fx-shape: "M 5 0 L 20 15 L 35 0 L 40 5 L 25 20 L 40 35 L 35 40 L 20 25 L 5 40 L 0 35 L 15 20 L 0 5 Z";
+}
+
+#closeButton:hover{
+	-fx-background-color: -fx-accent-offset;
+	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
+	-fx-scale-y: 1.35;
+    -fx-scale-x: 1.35;
+    
+    -fx-opacity: 75%;
+}
+
+#maxButton{
+	-fx-background-color: -fx-accent;
+	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
+	-fx-shape: "M 0 0 L 0 40 L 40 40 L 40 0 m -5 5 L 35 35 L 5 35 L 5 5 Z";
+}
+
+#maxButton:hover{
+	-fx-background-color: -fx-accent-offset;
+	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
+	-fx-scale-y: 1.35;
+    -fx-scale-x: 1.35;
+    
+    -fx-opacity: 75%;
+}
+
+#minButton{
+	-fx-background-color: -fx-accent;
+	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
+	-fx-shape: "M 0 18 L 40 18 L 40 22 L 0 22 Z";
+	-fx-scale-y: 0.3;
+}
+
+#minButton:hover{
+	-fx-background-color: -fx-accent-offset;
+	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
+	-fx-scale-y: 0.65;
+    -fx-scale-x: 1.35;
+    
+    -fx-opacity: 75%;
+}
+
+#resizeButton{
+	-fx-background-color: -fx-accent;
+	-fx-shape: "M 0 30 L 30 0 L 30 30 Z";
+	-fx-scale-y: 0.5;
+	-fx-translate-y: 5;
+}
+
+#resizeButton:hover{
+	-fx-background-color: -fx-accent-offset;
+	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
+    
+    -fx-opacity: 75%;
 }
 
 

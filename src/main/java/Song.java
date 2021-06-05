@@ -1,9 +1,7 @@
 
 import java.io.File;
 
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -17,7 +15,7 @@ import javafx.util.Duration;
 
 /*
 	Model: Model represents an object carrying data. It can also have logic to update controller if its data changes.
- */
+*/
 
 public class Song {
 

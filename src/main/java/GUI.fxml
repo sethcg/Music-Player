@@ -16,9 +16,23 @@
   
     <!-- Top Menu Bar -->
     <top>
-        <HBox id="TopBar" prefHeight="32" prefWidth="${root.prefWidth}">
-        	<Button fx:id="addSongButton" onAction="#handleAddSongButton" prefHeight="28.0" maxHeight="32.0" prefWidth="160.0"/>
-        </HBox>
+    	<StackPane fx:id="TopBar">
+   		<GridPane prefHeight="32" maxHeight="32" prefWidth="${root.prefWidth}" >
+   			<columnConstraints>
+   				<ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
+				<ColumnConstraints halignment="RIGHT" prefWidth="96.0" minWidth="96.0" hgrow="ALWAYS"/>
+			</columnConstraints>
+   		
+        	<HBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+        		<Button fx:id="addSongButton" onAction="#handleAddSongButton" prefHeight="28.0" maxHeight="32.0" prefWidth="160.0"/>
+        	</HBox>
+        	<HBox GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="CENTER_RIGHT" spacing="28.0">
+        		<Button fx:id="minButton" onAction="#handleMinButton" prefHeight="20.0" maxHeight="16.0" prefWidth="16.0"/>
+        		<Button fx:id="maxButton" onAction="#handleMaxButton" prefHeight="20.0" maxHeight="16.0" prefWidth="16.0"/>
+        		<Button fx:id="closeButton" onAction="#handleCloseButton" prefHeight="20.0" maxHeight="16.0" prefWidth="16.0"/>
+        	</HBox>
+        </GridPane>
+        </StackPane>
     </top>
     
     <!-- Bottom Menu Bar -->
@@ -55,6 +69,7 @@
 						<ColumnConstraints halignment="CENTER" hgrow="ALWAYS"/>
 						<ColumnConstraints halignment="CENTER" percentWidth="40.0" hgrow="NEVER"/>
 						<ColumnConstraints halignment="CENTER" percentWidth="20.0" hgrow="NEVER"/>
+						<ColumnConstraints halignment="CENTER" percentWidth="2.0" hgrow="NEVER"/>
 					</columnConstraints>
 
 					<rowConstraints>
@@ -95,8 +110,11 @@
 					<StackPane fx:id="volumeStack" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-padding: 0 10 0 0;">
 						<Slider fx:id="volumeSlider" minWidth="64.0" maxWidth="164.0"/>
 					</StackPane>
+					<HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="3" GridPane.rowIndex="0">
+    					<Label fx:id="resizeButton" maxHeight="12.0" prefHeight="12.0" maxWidth="12.0" prefWidth="12.0" />
+    				</HBox>
 				</GridPane>
-			</VBox> 
+			</VBox>
     	</HBox>
     </bottom>
 </BorderPane>

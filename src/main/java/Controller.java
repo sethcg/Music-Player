@@ -1,10 +1,10 @@
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -12,19 +12,27 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /*
 	Controller: Acts on the Model and View. Controls the flow of data.
- */
+*/
 
 public class Controller {
 	
+	private double x = 0;
+	private double y = 0;
+	private double xOffset = 0;
+	private double yOffset = 0;
+	private boolean canResize = false;
+
 	private boolean hasPlayed = false;
 	private final static String playShape = "M 20 20 L 20 80 L 80 50 L 20 20 Z";
 	private final static String pauseShape = "M 20 20 L 30 20 L 30 80 L 20 80 L 20 20 M 40 20 L 50 20 L 50 80 L 40 80 Z";
@@ -40,7 +48,12 @@ public class Controller {
         playlist = createInorderPlaylist(songlist);
 	}
 
+	
 	@FXML private BorderPane root;
+	@FXML private StackPane TopBar;
+	@FXML private Label resizeButton;
+	
+	
 	@FXML private Button addSongButton;
 	
 	// Album Controls
@@ -69,6 +82,49 @@ public class Controller {
     @FXML private void initialize() {
     	// Add Song Buttons to Root (BorderPane)
     	root.setCenter(addCenter());
+    	
+    	// Initialize TopBar
+        TopBar.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            }
+        });
+        TopBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+            	App.stage.setX(event.getScreenX() - x);
+            	App.stage.setY(event.getScreenY() - y);
+            }
+        });
+        
+        // Resize Screen if MousePress is within 12px of bottom left corner
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                if (event.getX() > App.stage.getWidth() - 12
+                        && event.getX() < App.stage.getWidth() + 12
+                        && event.getY() > App.stage.getHeight() - 12
+                        && event.getY() < App.stage.getHeight() + 12){
+                    canResize = true;
+                    x = App.stage.getWidth() - event.getX();
+                    y = App.stage.getHeight() - event.getY();
+                } else {
+                    canResize = false;
+                    xOffset = event.getSceneX();
+                    yOffset = event.getSceneY();
+                }
+            }
+        });
+
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                if (canResize == true) {
+                	App.stage.setWidth(event.getX() + x);
+                	App.stage.setHeight(event.getY() + y);
+                }
+            }
+        });
     	
     	// Initialize Volume Slider
     	volumeSlider.setMax(100);
@@ -155,6 +211,25 @@ public class Controller {
     			playButton.setStyle("-fx-shape: '" + pauseShape + "';");
     		}
     	}
+    }
+    
+    @FXML
+    private void handleMinButton(){
+    	System.out.println("min button");
+    	App.stage.setIconified(true);
+    }
+    
+    @FXML
+    private void handleMaxButton(){
+    	System.out.println("max button");
+    	App.stage.setFullScreenExitHint("");
+    	App.stage.setFullScreen(true);
+    }
+    
+    @FXML
+    private void handleCloseButton(){
+    	System.out.println("close button");
+    	App.stage.close();
     }
     
     @FXML
