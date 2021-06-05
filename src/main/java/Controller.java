@@ -1,26 +1,19 @@
-import com.sun.javafx.stage.StageHelper;
+import java.util.Random;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.HPos;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /*
@@ -47,7 +40,8 @@ public class Controller {
 	// On construction in App via .load(FXML) pointing to the controller, Create the DataModel (SongList)
 	public Controller() {
         songlist.loadMusicFromFolder();
-        playlist = createInorderPlaylist(songlist);
+        //playlist = createInorderPlaylist(songlist);
+        playlist = createRandomPlaylist(songlist);
 	}
 
 	
@@ -82,24 +76,9 @@ public class Controller {
 
 	// Initialize FXML Variables
     @FXML private void initialize() {
-    	// Add Song Buttons to Root (BorderPane)
-    	root.setCenter(addCenter());
     	
-    	// Initialize TopBar
-        TopBar.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                x = event.getSceneX();
-                y = event.getSceneY();
-            }
-        });
-        TopBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-            	App.stage.setX(event.getScreenX() - x);
-            	App.stage.setY(event.getScreenY() - y);
-            }
-        });
+    	// Initialize the Middle Songs
+    	root.setCenter(SongButtonHelper.addCenter(songlist, this));
         
         // Resize Screen if MousePress is within 12px of bottom left corner
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -165,7 +144,7 @@ public class Controller {
     
     /* METHODS FOR HANDLING BUTTONS */
     
-    private void handleMiddleSongButton(Song song){
+    protected void handleMiddleSongButton(Song song){
     	hasPlayed = true;
     	mediaPlayer.stop();
     	changeSong(song);
@@ -247,12 +226,32 @@ public class Controller {
 		for(Song song : this.songlist.getSongList()){
 			playlist.getSongList().add(song);
 		}
-		// Initialize a currentSong and Mediaplayer when playlist is created
-		if(playlist.isCurrentSongEmpty()) {
-			playlist.setCurrentSong(playlist.getSongList().get(0));
-			mediaPlayer = new MediaPlayer(playlist.getCurrentSong().getMedia().get());
-		}
+		initializeSong(playlist.getSongList().get(0));
 		return playlist;
+	}
+	
+	private SongList createRandomPlaylist(SongList songlist) {
+		playlist = songlist;
+        Random r = new Random();
+        
+        for (int index = songlist.getSongList().size() - 1; index > 1; index--) {
+
+            int newSpot = r.nextInt(index);
+            
+            Song temp = playlist.getSongList().get(index);
+            playlist.getSongList().set(index, playlist.getSongList().get(newSpot));
+            playlist.getSongList().set(newSpot, temp);
+        }
+     	initializeSong(playlist.getSongList().get(0));
+        return playlist;
+	}
+	
+	// Initialize a currentSong and Mediaplayer when playlist is created
+	private void initializeSong(Song song) {
+     	if(playlist.isCurrentSongEmpty()) {
+     		playlist.setCurrentSong(song);
+     		mediaPlayer = new MediaPlayer(playlist.getCurrentSong().getMedia().get());
+     	}
 	}
     
     
@@ -292,87 +291,6 @@ public class Controller {
     	albumCover.setImage(image);
     	albumLabel.setText("");
     	albumLabel.getParent().setId("");
-    }
-	
-	
-	/* ----------- ADD SONG BUTTONS --------- */
-	
-	// Creates the BorderPane Center i.e. (Button, and Song Info)
-    public ScrollPane addCenter() {
-    	GridPane grid = new GridPane();
-    	grid.setId("SongMenu");
-
-    	ColumnConstraints songColumn = new ColumnConstraints();
-        songColumn.setPercentWidth(100);
-        grid.getColumnConstraints().addAll(songColumn);
-    	
-        // Add each Song Button with Labels
-        for(int i = 0; i < songlist.getSongList().size(); i++){
-        	// Place SongLabel and SongButton on top of each other
-        	StackPane buttonStack = new StackPane();
-        	buttonStack.setId("SongButton");
-        	buttonStack.getChildren().add(addSongLabel(songlist.getSongList().get(i)));
-        	buttonStack.getChildren().add(addSongButton(songlist.getSongList().get(i)));
-        	grid.add(buttonStack, 0, i);
-        }
-
-        // SongMenu ScrollBar
-        ScrollPane songScroll = new ScrollPane();
-        songScroll.setId("SongScrollPane");
-        songScroll.setContent(grid);
-        songScroll.setFitToWidth(true);
-        
-        return songScroll;
-    }
-    
-    // Add Button to Complex Song Button
-    public Button addSongButton(Song song){
-        Button songButton = new Button();
-        songButton.setOnAction(new EventHandler<ActionEvent>() {
-	        public void handle(ActionEvent t) {
-	        	handleMiddleSongButton(song);
-	        }
-	    });
-        songButton.setPrefWidth(Double.MAX_VALUE);
-        songButton.setPrefHeight(32);
-        return songButton;
-    }
-    
-    // Add Label to Complex (Confusing :P) Song Button
-    public GridPane addSongLabel(Song song){
-    	GridPane songInformation = new GridPane();
-    	songInformation.setId("SongButtonLabel");
-    	
-    	// Constraints for the sizing of the Columns i.e. (60%, 30%, 10%)
-        ColumnConstraints titleColumn = new ColumnConstraints();
-        titleColumn.setPercentWidth(60);
-        titleColumn.setHalignment(HPos.LEFT);
-        
-        ColumnConstraints artistColumn = new ColumnConstraints();
-        artistColumn.setPercentWidth(30);
-        artistColumn.setHalignment(HPos.LEFT);
-        
-        ColumnConstraints lengthColumn = new ColumnConstraints();
-        lengthColumn.setPercentWidth(10);
-        lengthColumn.setHalignment(HPos.RIGHT);
-        
-        // Adding the Constraints to the grid
-        songInformation.getColumnConstraints().addAll(titleColumn, artistColumn, lengthColumn);
-        
-        Label title = new Label();
-        Label artist = new Label();
-        Label length = new Label();
-        
-        // Bind the textProperty to get rid of Loading Bugs*
-        title.textProperty().bind(song.getTitle());
-        artist.textProperty().bind(song.getArtist());
-        length.textProperty().bind(song.getTotalDurationString());
-        
-        // Adding the Labels to the correct column
-        songInformation.add(title, 0, 0);
-        songInformation.add(artist, 1, 0);
-        songInformation.add(length, 2, 0);
-        return songInformation;
     }
 	
 }

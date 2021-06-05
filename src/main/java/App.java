@@ -37,6 +37,7 @@ public class App extends Application {
         scene.setUserAgentStylesheet(new File("./DarkStyles.css").toURI().toString());
         stage.setScene(scene);
         this.scene = scene;
+    	DraggableHelper.addDraggableListener(stage, "#TopBar");		// Add Drag ability to TopBar
         stage.setTitle("MP3 Audio Player");
         stage.initStyle(StageStyle.UNDECORATED);
         this.stage = stage;
