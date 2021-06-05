@@ -1,3 +1,5 @@
+import com.sun.javafx.stage.StageHelper;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -215,20 +217,21 @@ public class Controller {
     
     @FXML
     private void handleMinButton(){
-    	System.out.println("min button");
     	App.stage.setIconified(true);
     }
     
     @FXML
     private void handleMaxButton(){
-    	System.out.println("max button");
-    	App.stage.setFullScreenExitHint("");
-    	App.stage.setFullScreen(true);
+    	if(App.stage.isFullScreen()) {
+    		App.stage.setFullScreen(false);
+    	}else {
+        	App.stage.setFullScreenExitHint("");
+        	App.stage.setFullScreen(true);
+    	}
     }
     
     @FXML
     private void handleCloseButton(){
-    	System.out.println("close button");
     	App.stage.close();
     }
     
