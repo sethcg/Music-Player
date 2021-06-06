@@ -52,6 +52,7 @@ public class Controller {
 	
 	
 	@FXML private Button addSongButton;
+	@FXML private Button SettingsButton;
 	
 	// Album Controls
 	@FXML private ImageView albumCover;
@@ -214,6 +215,11 @@ public class Controller {
     @FXML
     private void handleCloseButton(){
     	App.stage.close();
+    }
+    
+    @FXML
+    private void handleSettingsButton(){
+    	System.out.println("settings!!");
     }
     
     @FXML

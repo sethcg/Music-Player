@@ -3,21 +3,20 @@
 
 	Name:					Color:
 
-	Song Menu Grid			#141414;
-	Top/Bottom Bar			#181818;
-
-	Song Button				#414141;
-	Song Button Offset		#414141;
-
-	Control Button			#414141;
-	Control Button Offset	#414141;
-	Control Button Outline	#414141;
+	-fx-outline: 			#090909;
 	
-	Album Cover				#ECECEC;
-	Album Cover Offset		#DDDDDD;
+	-fx-song-menu: 			#141414;
+	-fx-menu: 				#181818;
 
-	Primary Text			#ECECEC;
-	Secondary Text			#DDDDDD;
+	-fx-button: 			#282828;
+	
+	-fx-accent: 			#275747;
+	-fx-accent-offset: 		#276447;
+	
+	-fx-text: 				#ECECEC;
+	-fx-text-secondary: 	#DDDDDD;
+
+	-fx-slider-track: 		derive(-fx-accent, 75%);
 
 */
 
@@ -37,12 +36,10 @@
 	-fx-text-secondary: #DDDDDD;
 	
 	-fx-slider-track: derive(-fx-accent, 75%);
-	
 
-  	-fx-infinite-value: 100000000000;
-  	
-  	/* Default Font */
+  	/* Default Values */
   	-fx-font-family: monospace;
+  	-fx-infinite-value: 100000000000.0;
 }
 
 
@@ -324,4 +321,20 @@
     -fx-opacity: 75%;
 }
 
+#SettingsButton{
+	-fx-background-color: derive(-fx-accent, 15%);
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent, 15%), 5, 0.2, 0.0, 0.0);
+	-fx-shape: "M 12 19 L 9 18 L 9 15 L 12 14 L 13 11 L 12 9 L 14 7 L 16 8 L 19 7 L 20 4 L 23 4 L 24 7 L 27 8 L 29 7 L 31 9 L 30 11 L 31 14 
+				L 34 15 L 34 18 L 31 19 L 30 22 L 31 24 L 29 26 L 27 25 L 24 26 L 23 29 L 20 29 L 19 26 L 16 25 L 14 26 L 12 24 L 13 22 Z 
+				M 15 19 L 16 21 L 17 22 L 19 23 L 24 23 L 26 22 L 27 21 L 28 19 L 28 14 L 27 12 L 26 11 L 24 10 L 19 10 L 17 11 L 16 12 L 15 14 Z";
+}
+
+#SettingsButton:hover{
+	-fx-background-color: derive(-fx-accent-offset, 15%);
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent-offset, 15%), 8, 0.3, 0.0, 0.0);
+	-fx-scale-y: 1.35;
+    -fx-scale-x: 1.35;
+    
+    -fx-opacity: 75%;
+}
 
