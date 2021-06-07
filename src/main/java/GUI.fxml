@@ -17,15 +17,14 @@
     <!-- Top Menu Bar -->
     <top>
     	<StackPane fx:id="TopBar">
-   		<GridPane prefHeight="32" maxHeight="36" prefWidth="${root.prefWidth}" >
+   		<GridPane prefHeight="32" maxHeight="32" prefWidth="${root.prefWidth}" >
    			<columnConstraints>
    				<ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
 				<ColumnConstraints halignment="RIGHT" prefWidth="96.0" minWidth="96.0" hgrow="ALWAYS"/>
 			</columnConstraints>
    		
-        	<HBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="28.0">
-        	    <Button fx:id="SettingsButton" onAction="#handleSettingsButton" prefHeight="36.0" maxHeight="36.0" prefWidth="36.0" maxWidth="32.0"/>
-        		<Button fx:id="addSongButton" onAction="#handleAddSongButton" prefHeight="28.0" maxHeight="32.0" prefWidth="160.0"/>
+        	<HBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+        	    <Button fx:id="SettingsButton" onAction="#handleSettingsButton" prefHeight="32.0" maxHeight="32.0" prefWidth="28.0" maxWidth="28.0"/>
         	</HBox>
         	<HBox GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="CENTER_RIGHT" spacing="28.0">
         		<Button fx:id="minButton" onAction="#handleMinButton" prefHeight="20.0" maxHeight="16.0" prefWidth="16.0"/>

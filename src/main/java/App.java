@@ -47,7 +47,10 @@ public class App extends Application {
 			@Override
 			public void handle(WindowEvent event) {
 				Platform.exit();
-				System.out.println("set something on close");
+				
+				// Save Color Choice Before Closing
+				SettingsHelper.saveColorPreference();
+				
 				System.exit(0);
 			}	
         });

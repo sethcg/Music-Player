@@ -29,6 +29,7 @@
 
 	-fx-button: #282828;
 	
+	/* Colors Changed in Settings */
 	-fx-accent: #275747;
 	-fx-accent-offset: #276447;
 	
@@ -80,7 +81,7 @@
 	-fx-text-fill: -fx-text;
 	-fx-text-alignment: left;
 	-fx-font-weight: bolder;
-	-fx-font-size: 26px;
+	-fx-font-size: 28px;
 	
 	-fx-pref-height: 32px;
 }
@@ -89,7 +90,7 @@
 	-fx-text-fill: -fx-text;
 	-fx-text-alignment: left;
 	-fx-font-weight: bolder;
-	-fx-font-size: 26px;
+	-fx-font-size: 28px;
 	
 	-fx-pref-height: 32px;
 }
@@ -259,6 +260,125 @@
      -fx-border-color: -fx-outline;
      -fx-border-radius: 10;
      -fx-border-width: 3;
+}
+
+
+/* COLOR SLIDER CSS STYLING */
+
+#colorVisual{
+	-fx-background-color: #878787;
+	-fx-max-height: 96px;
+	-fx-min-height: 96px;
+	-fx-max-width: 96px;
+	-fx-min-width: 96px;
+	-fx-shape: "M 0 0 L 0 10 L 10 10 L 10 0 Z";
+	
+	-fx-border-color: -fx-outline;
+	-fx-effect: dropshadow(gaussian, -fx-outline, 8, 0.3, 0.0, 0.0);
+	-fx-border-width: 3;
+	
+}
+
+#redSlider .track {
+	-fx-background-color: #870000;
+    -fx-background-radius: 3, 3, 2;
+    -fx-padding: 5;
+}
+
+#redSlider .thumb {
+     -fx-background-color: #878787;
+     -fx-effect: dropshadow(gaussian, #878787, 4, 0.2, 0.0, 0.0);
+     -fx-background-radius: 12;
+     -fx-pref-height: 16;
+     -fx-pref-width: 16;
+}
+
+#greenSlider .track {
+	-fx-background-color: #008700;
+    -fx-background-radius: 3, 3, 2;
+    -fx-padding: 5;
+}
+
+#greenSlider .thumb {
+     -fx-background-color: #878787;
+     -fx-effect: dropshadow(gaussian, #878787, 4, 0.2, 0.0, 0.0);
+     -fx-background-radius: 12;
+     -fx-pref-height: 16;
+     -fx-pref-width: 16;
+}
+
+#blueSlider .track {
+	-fx-background-color: #000087;
+    -fx-background-radius: 3, 3, 2;
+    -fx-padding: 5;
+}
+
+#blueSlider .thumb {
+     -fx-background-color: #878787;
+     -fx-effect: dropshadow(gaussian, #878787, 4, 0.2, 0.0, 0.0);
+     -fx-background-radius: 12;
+     -fx-pref-height: 16;
+     -fx-pref-width: 16;
+}
+
+#redScheme{
+	-fx-text-fill: -fx-text;
+	-fx-alignment: center;
+	-fx-font-weight: bolder;
+	-fx-font-size: 28px;
+	
+	/* Accent: #c95140 Accent Offset: #a34334 */
+	-fx-background-color: linear-gradient(to right, #c95140 50%, #a34334 50%);
+    -fx-background-radius: 3, 3, 2;
+    -fx-pref-width: -fx-infinite-value;
+    -fx-max-width: 600px;
+    -fx-pref-height: 32;
+    -fx-padding: 5;
+}
+
+#blueScheme{
+	-fx-text-fill: -fx-text;
+	-fx-alignment: center;
+	-fx-font-weight: bolder;
+	-fx-font-size: 28px;
+	
+	/* Accent: #4d9cc4 Accent Offset: #38728f */
+	-fx-background-color: linear-gradient(to right, #4d9cc4 50%, #38728f 50%);
+    -fx-background-radius: 3, 3, 2;
+    -fx-pref-width: -fx-infinite-value;
+    -fx-max-width: 600px;
+    -fx-pref-height: 32;
+    -fx-padding: 5;
+}
+
+#greenScheme{
+	-fx-text-fill: -fx-text;
+	-fx-alignment: center;
+	-fx-font-weight: bolder;
+	-fx-font-size: 28px;
+	
+	/* Accent: #3db861 Accent Offset: #28783f */
+	-fx-background-color: linear-gradient(to right, #3db861 50%, #28783f 50%);
+    -fx-background-radius: 3, 3, 2;
+    -fx-pref-width: -fx-infinite-value;
+    -fx-max-width: 600px;
+    -fx-pref-height: 32;
+    -fx-padding: 5;
+}
+
+#purpleScheme{
+	-fx-text-fill: -fx-text;
+	-fx-alignment: center;
+	-fx-font-weight: bolder;
+	-fx-font-size: 28px;
+	
+	/* Accent: #7a599e  Accent Offset: #4f3a66 */
+	-fx-background-color: linear-gradient(to right, #7a599e 50%, #4f3a66 50%);
+    -fx-background-radius: 3, 3, 2;
+    -fx-pref-width: -fx-infinite-value;
+    -fx-max-width: 600px;
+    -fx-pref-height: 32;
+    -fx-padding: 5;
 }
 
 #closeButton{

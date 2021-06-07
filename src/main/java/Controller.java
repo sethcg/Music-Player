@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
@@ -41,8 +42,8 @@ public class Controller {
 	// On construction in App via .load(FXML) pointing to the controller, Create the DataModel (SongList)
 	public Controller() {
         songlist.loadMusicFromFolder();
-        //playlist = createInorderPlaylist(songlist);
-        playlist = createRandomPlaylist(songlist);
+        playlist = createInorderPlaylist(songlist);
+        //playlist = createRandomPlaylist(songlist);
 	}
 
 	
@@ -50,8 +51,6 @@ public class Controller {
 	@FXML private StackPane TopBar;
 	@FXML private Label resizeButton;
 	
-	
-	@FXML private Button addSongButton;
 	@FXML private Button SettingsButton;
 	
 	// Album Controls
@@ -81,6 +80,9 @@ public class Controller {
     	
     	// Initialize the Middle Songs
     	root.setCenter(SongButtonHelper.addCenter(songlist, this));
+    	
+    	SettingsHelper helper = new SettingsHelper(root);
+    	helper.setColorDefaults();
         
         // Resize Screen if MousePress is within 12px of bottom left corner
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -127,9 +129,6 @@ public class Controller {
     	
     	// Initialize Play Button
     	playButton.setStyle("-fx-shape: '" + playShape + "';");
-    	
-    	// Initialize AddMP3Button
-    	addSongButton.setText("Add MP3 File");
     	
     	// Initialize Duration Bar
     	currDuration.setText("0:00");
@@ -214,22 +213,20 @@ public class Controller {
     
     @FXML
     private void handleCloseButton(){
+    	// Save Color Choice Before Closing
+		SettingsHelper.saveColorPreference();
     	App.stage.close();
     }
     
     @FXML
     private void handleSettingsButton(){
-    	System.out.println("settings!!");
+    	if(root.getCenter().getId() == "SongScrollPane") {
+    		root.setCenter(SettingsHelper.addCenter(this));
+    	}else {
+    		root.setCenter(SongButtonHelper.addCenter(songlist, this));
+    	}
     }
-    
-    @FXML
-    private void handleAddSongButton(){
-    	System.out.println("add song button");
-    	// TEST FOR RANDOMIZING THE MIDDLE SONGS
-    	//root.setCenter(SongButtonHelper.addCenter(createRandomPlaylist(songlist), this));
-    }
-    
-    
+      
     /* -------------- PLAYLIST METHODS ---------- */
 	
 	private SongList createInorderPlaylist(SongList songlist) {

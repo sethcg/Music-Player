@@ -10,8 +10,7 @@ public class DraggableHelper {
         stage.getScene().lookup(selector).addEventHandler(MouseEvent.MOUSE_PRESSED, resizeListener);
         stage.getScene().lookup(selector).addEventHandler(MouseEvent.MOUSE_DRAGGED, resizeListener);
     }
-    
-    
+
     static class DraggableListener implements EventHandler<MouseEvent> {
     	private Stage stage;
     	private double x = 0;
