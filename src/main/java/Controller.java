@@ -105,8 +105,12 @@ public class Controller {
         root.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 if (canResize == true) {
-                	App.stage.setWidth(event.getX() + x);
-                	App.stage.setHeight(event.getY() + y);
+                	if(event.getX() + x >= 610) {
+                		App.stage.setWidth(event.getX() + x);
+                	}
+                	if(event.getY() + y >= 240) {
+                		App.stage.setHeight(event.getY() + y);
+                	}
                 }
             }
         });
