@@ -14,17 +14,16 @@ This is a Music Player that takes in MP3 files from a local folder and displays 
 - Java, FXML, CSS
 - CSS Stylesheet implementation
 - Control Buttons: Back, Play/Pause, Next, Volume Control
+- Dynamic Accent Color Settings (Saved as a Preference)
 - Songs are loaded via a local folder
-- Custom Layout with min, max, close buttons and also resizeable from bottom right. 
+- Custom Layout with handmade SVG paths
 
 ![Picture of Music Player](https://i.imgur.com/ptU0ZLu.png)
 
-
 ----
-
 ## To Do:
-- Get "Add Mp3 Button" working, and able to add new songs
-- Add way to easily configure color scheme and accent colors without changing CSS stylesheet
+- Add easy ability to add/delete songs
+- ~~Add way to easily configure color scheme and accent colors without changing CSS stylesheet~~
 - Add sorting songlist by Song name, Artist, Length
 - Optimize, Optimize, Optimize
 
