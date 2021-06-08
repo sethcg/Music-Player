@@ -1,9 +1,11 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -23,9 +25,13 @@ public class SongButtonHelper {
         for(int i = 0; i < songlist.getSongList().size(); i++){
         	// Place SongLabel and SongButton on top of each other
         	StackPane buttonStack = new StackPane();
+        	buttonStack.setAlignment(Pos.CENTER_RIGHT);
         	buttonStack.setId("SongStack");
         	buttonStack.getChildren().add(addSongLabel(songlist.getSongList().get(i)));
         	buttonStack.getChildren().add(addSongButton(songlist.getSongList().get(i), controller));
+        	
+        	buttonStack.getChildren().add(addDeleteSongButton(songlist.getSongList().get(i), controller));
+        	
         	grid.add(buttonStack, 0, i);
         	
         	// Update the referenced songStack in song
@@ -41,15 +47,49 @@ public class SongButtonHelper {
         return songScroll;
     }
     
+ // Add Button to Complex Song Button
+    public static Button addDeleteSongButton(Song song, Controller controller){
+    	Button deleteSongButton = new Button("Delete");
+    	deleteSongButton.setId("DeleteSongButton");
+    	deleteSongButton.setOnAction(new EventHandler<ActionEvent>() {
+	        public void handle(ActionEvent event) {
+	        	controller.deleteSong(song);
+	        }
+	    });
+    	deleteSongButton.setPrefWidth(100);
+    	deleteSongButton.setPrefHeight(32);
+    	deleteSongButton.setVisible(false);
+        return deleteSongButton;
+    }
+    
     // Add Button to Complex Song Button
     public static Button addSongButton(Song song, Controller controller){
         Button songButton = new Button();
         songButton.setId("SongButton");
+        songButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+	        public void handle(MouseEvent event) {
+	        	//left click
+	            if (event.isPrimaryButtonDown()) {
+		        	controller.handlePlaySongButton(song);
+	            }
+	            //right click
+	            if (event.isSecondaryButtonDown()) {
+	                StackPane songStack = song.getSongStack();
+	              	if(songStack.lookup("#DeleteSongButton").isVisible()) {
+	                  	songStack.lookup("#DeleteSongButton").setVisible(false);	
+	              	}else {
+	                  	songStack.lookup("#DeleteSongButton").setVisible(true);	
+	              	}
+	            }
+	        }
+	    });
+        /*
         songButton.setOnAction(new EventHandler<ActionEvent>() {
 	        public void handle(ActionEvent event) {
 	        	controller.handleMiddleSongButton(song);
 	        }
 	    });
+	    */
         songButton.setPrefWidth(Double.MAX_VALUE);
         songButton.setPrefHeight(32);
         return songButton;

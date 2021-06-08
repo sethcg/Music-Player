@@ -98,11 +98,13 @@ public class Song {
 	public StringProperty getTotalDurationString(){
 		return totalDurationString;
 	}
-	
 	public StackPane getSongStack() {
 		return songStack;
 	}
 	public void setSongStack(StackPane newStack) {
 		songStack = newStack;
+	}
+	public String getPath(){
+		return path;
 	}
 }

@@ -213,9 +213,10 @@
 	-fx-text-fill: -fx-text-offset;
 }
 
-#addSongButton{
+#DeleteSongButton{
 	-fx-text-fill: -fx-text;
 	-fx-alignment: center;
+	-fx-text-alignment: center;
 	-fx-font-weight: bolder;
 	-fx-font-size: 20px;
 	
@@ -224,7 +225,7 @@
 	-fx-background-radius: 4;
 }
 
-#addSongButton:hover{
+#DeleteSongButton:hover{
 	-fx-background-color: -fx-accent-offset;
 	-fx-effect: dropshadow(gaussian, -fx-accent, 8, 0.3, 0.0, 0.0);
 }

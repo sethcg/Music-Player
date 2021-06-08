@@ -56,6 +56,16 @@ public class SongList {
     	}
     }
     
+    public void deleteSong(Song song){
+    	File songFile = new File(song.getPath());
+    	songFile.deleteOnExit();
+    	/*if(songFile.delete()) {
+        	System.out.println("Deleted: " + song.getPath());
+    	}else {
+        	System.out.println("Delete Failed");
+    	}*/
+    }
+    
     /* FOR IMPLMENTING A SAVING FEATURE IN FUTURE */
     //public void saveData(File file) { }
 }

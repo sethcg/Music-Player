@@ -28,7 +28,7 @@ public class Controller {
 	private double xOffset = 0;
 	private double yOffset = 0;
 	private boolean canResize = false;
-	private StackPane prevSongStack = null;
+	private Song prevSong = null;
 
 	private boolean hasPlayed = false;
 	private final static String playShape = "M 20 20 L 20 80 L 80 50 L 20 20 Z";
@@ -145,13 +145,25 @@ public class Controller {
     
     /* METHODS FOR HANDLING BUTTONS */
     
-    protected void handleMiddleSongButton(Song song){    	
+    protected void handlePlaySongButton(Song song){    	
     	hasPlayed = true;
     	mediaPlayer.stop();
     	changeSong(song);
         mediaPlayer.play();
         playButton.setStyle("-fx-shape: '" + pauseShape + "';");
     }
+    
+    protected void deleteSong(Song song){
+    	if(prevSong == song) {
+    		mediaPlayer.stop();
+    		prevSong = null;
+    	}
+    	songlist.getSongList().remove(song);
+    	songlist.deleteSong(song);
+    	playlist.getSongList().remove(song);
+    	root.setCenter(SongButtonHelper.addCenter(songlist, this));
+    }
+    
     
     @FXML
     private void handlePlayButton(){
@@ -171,7 +183,7 @@ public class Controller {
     
     @FXML
     private void handleNextButton(){
-    	if(hasPlayed) {
+    	if(prevSong != null) {
     		int currentSongIndex = playlist.getSongList().indexOf(playlist.getCurrentSong());
     		if(currentSongIndex + 1 < playlist.getSongList().size()) {
     			mediaPlayer.stop();
@@ -184,7 +196,7 @@ public class Controller {
     
     @FXML
     private void handleBackButton(){
-    	if(hasPlayed) {
+    	if(prevSong != null) {
     		int currentSongIndex = playlist.getSongList().indexOf(playlist.getCurrentSong());
     		if(currentSongIndex - 1 >= 0 && (int) mediaPlayer.getCurrentTime().toSeconds() <= 3) {
     			currentSongIndex--;
@@ -267,11 +279,11 @@ public class Controller {
 	public void changeSong(Song song){
 		// Update the previous SongButton and Current SongButton Style
     	StackPane songStack = song.getSongStack();
-    	if(prevSongStack != null) {
-    		prevSongStack.lookup("#SongButtonLabelPlaying").setId("SongButtonLabel");
+    	if(prevSong != null && prevSong.getSongStack().lookup("#SongButtonLabelPlaying") != null) {
+    		prevSong.getSongStack().lookup("#SongButtonLabelPlaying").setId("SongButtonLabel");
     	}
     	songStack.lookup("#SongButtonLabel").setId("SongButtonLabelPlaying");
-    	prevSongStack = songStack;
+    	prevSong = song;
     	
     	// Change Song in MediaPlayer
     	playlist.setCurrentSong(song);
