@@ -15,12 +15,13 @@ This is a Music Player that takes in MP3 files from a local folder and displays 
 - Custom Layout with handmade SVG paths
 
 ----
+
 ## Music View:
 ![Music_View_MP](https://user-images.githubusercontent.com/8952745/121302525-d30fb080-c8c7-11eb-9b85-9c26a1841af3.png)
-----
+
 ## Color Settings View:
 ![Color_View_MP](https://user-images.githubusercontent.com/8952745/121302463-ba06ff80-c8c7-11eb-920f-f5533ef7b177.png)
-----
+
 ## Add Song View:
 ![Add_Song_View](https://user-images.githubusercontent.com/8952745/121302489-c428fe00-c8c7-11eb-9353-f2bf48f483fe.png)
 
