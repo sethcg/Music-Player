@@ -18,7 +18,7 @@ import javafx.util.Duration;
 	Model: Model represents an object carrying data. It can also have logic to update controller if its data changes.
 */
 
-public class Song {
+public class Song{
 
 	// JavaFX related Attributes
 	private final String path;

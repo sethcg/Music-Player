@@ -12,7 +12,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.paint.Color?>
 
-<BorderPane fx:id="root" fx:controller="Controller" xmlns:fx="http://javafx.com/fxml" prefHeight="480" prefWidth="640">
+<BorderPane fx:id="root" fx:controller="Controller" xmlns:fx="http://javafx.com/fxml" prefHeight="480" prefWidth="860">
   
     <!-- Top Menu Bar -->
     <top>
@@ -23,8 +23,9 @@
 				<ColumnConstraints halignment="RIGHT" prefWidth="96.0" minWidth="96.0" hgrow="ALWAYS"/>
 			</columnConstraints>
    		
-        	<HBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+        	<HBox GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="CENTER_LEFT" spacing="14.0">
         	    <Button fx:id="SettingsButton" onAction="#handleSettingsButton" prefHeight="32.0" maxHeight="32.0" prefWidth="28.0" maxWidth="28.0"/>
+        	    <Button fx:id="AddSongButton" onAction="#handleAddSongButton" prefHeight="32.0" maxHeight="32.0" prefWidth="28.0" maxWidth="28.0"/>
         	</HBox>
         	<HBox GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="CENTER_RIGHT" spacing="28.0">
         		<Button fx:id="minButton" onAction="#handleMinButton" prefHeight="20.0" maxHeight="16.0" prefWidth="16.0"/>
@@ -92,30 +93,41 @@
 						<GridPane>
 							<!-- Control Button Constraints  -->
 							<columnConstraints>
+								<ColumnConstraints halignment="CENTER" minWidth="50.0" hgrow="ALWAYS"/>
 								<ColumnConstraints halignment="CENTER" minWidth="64.0" hgrow="ALWAYS"/>
 								<ColumnConstraints halignment="CENTER" minWidth="64.0" hgrow="ALWAYS"/>
 								<ColumnConstraints halignment="CENTER" minWidth="64.0" hgrow="ALWAYS"/>
+								<ColumnConstraints halignment="CENTER" minWidth="50.0" hgrow="ALWAYS"/>
 							</columnConstraints>
 							
 							<rowConstraints>
 								<RowConstraints valignment="CENTER" vgrow="ALWAYS"/>
 							</rowConstraints>
 							
+							<!-- Shuffle Toggle -->
+							<Button fx:id="ShuffleButton" id="ToggleButtonOff" onAction="#handleShuffleButton" GridPane.columnIndex="0" GridPane.rowIndex="0"
+																		style = "-fx-shape:'M -3 5 L -3 3 L 0 3 L 3 4 L 5 5 L 6 6 L 7 9 L 8 11 L 10 12 L 12 12 L 12 10 L 17 13 L 12 16 L 12 14 L 9 14 L 7 13 L 6 12 L 5 9 L 4 7 L 3 6 L 0 5 L -3 5 
+																							M -3 12 L 0 12 L 3 11 L 4 10 L 5 8 L 6 5 L 7 4 L 9 3 L 12 3 L 12 1 L 17 4 L 12 7 L 12 5 L 10 5 L 8 6 L 7 8 L 6 11 L 5 12 L 3 13 L 0 14 L -3 14 L -3 12';"/>
 							<!-- Back Button -->
 							<Button fx:id="backButton" id="ControlButton" onAction="#handleBackButton" 
-									GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-shape: 'M 80 80 L 80 20 L 20 50 L 80 80 m -30 -30 L 80 35 L 80 65 Z'"/>
+									GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-shape: 'M 80 80 L 80 20 L 20 50 L 80 80 m -30 -30 L 80 35 L 80 65 Z'"/>
 									
 							<!-- Play Button -->
 							<Button fx:id="playButton" id="ControlButton" onAction="#handlePlayButton" 
-									GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+									GridPane.columnIndex="2" GridPane.rowIndex="0"/>
 									
 							<!-- Next Button -->
 							<Button fx:id="nextButton" id="ControlButton" onAction="#handleNextButton" 
-									GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-shape: 'M 20 20 L 20 80 L 80 50 L 20 20 m 30 30 L 20 65 L 20 35 Z'"/>
+									GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-shape: 'M 20 20 L 20 80 L 80 50 L 20 20 m 30 30 L 20 65 L 20 35 Z'"/>
+								
+							<!-- Repeat Toggle -->
+							<Button fx:id="RepeatButton" id="ToggleButtonOff" onAction="#handleRepeatButton" GridPane.columnIndex="4" GridPane.rowIndex="0"
+																		style = "-fx-shape:'M 1 10 L 0 8 L 0 5 L 1 3 L 3 2 L 11 2 L 13 3 L 14 5 L 14 9 L 12 9 L 12 5 L 11 4 
+																							L 3 4 L 2 5 L 2 8 L 3 9 L 5 9 L 7 9 L 7 7 L 11 10 L 7 13 L 7 11 L 3 11 L 1 10 Z';"/>
 						</GridPane>
 					</StackPane>
 					
-					<StackPane fx:id="volumeStack" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-padding: 0 10 0 0;">
+					<StackPane fx:id="volumeStack" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-padding: 0 10 0 5;">
 						<Slider fx:id="volumeSlider" minWidth="64.0" maxWidth="164.0"/>
 					</StackPane>
 					<HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="3" GridPane.rowIndex="0">

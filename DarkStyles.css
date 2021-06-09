@@ -230,6 +230,39 @@
 	-fx-effect: dropshadow(gaussian, -fx-accent, 8, 0.3, 0.0, 0.0);
 }
 
+#ToggleButtonOn{
+	-fx-background-color: -fx-accent;
+	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
+	-fx-min-width: 34px;
+	-fx-min-height: 26px;
+}
+
+#ToggleButtonOn:hover{
+	-fx-background-color: -fx-accent-offset;
+	-fx-effect: dropshadow(gaussian, -fx-accent-offset, 8, 0.3, 0.0, 0.0);
+	-fx-scale-y: 1.35;
+    -fx-scale-x: 1.35;
+    
+    -fx-opacity: 75%;
+}
+
+#ToggleButtonOff{
+	-fx-background-color: derive(-fx-accent, -50%);
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent, -50%), 5, 0.2, 0.0, 0.0);
+	-fx-min-width: 34px;
+	-fx-min-height: 26px;
+}
+
+#ToggleButtonOff:hover{
+	-fx-background-color: derive(-fx-accent-offset, -50%);
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent-offset, -50%), 8, 0.3, 0.0, 0.0);
+	-fx-scale-y: 1.35;
+    -fx-scale-x: 1.35;
+    
+    -fx-opacity: 75%;
+}
+
+
 #ControlButton{
 	-fx-background-color: -fx-accent;
 	-fx-effect: dropshadow(gaussian, -fx-accent, 5, 0.2, 0.0, 0.0);
@@ -457,5 +490,31 @@
     -fx-scale-x: 1.35;
     
     -fx-opacity: 75%;
+}
+
+#AddSongButton{
+	-fx-background-color: derive(-fx-accent, 15%);
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent, 15%), 5, 0.2, 0.0, 0.0);
+	-fx-shape: "M 20 20 L 0 20 L 0 30 L 20 30 L 20 50 L 30 50 L 30 30 L 50 30 L 50 20 L 30 20 L 30 0 L 20 0 Z";
+}
+
+#AddSongButton:hover{
+	-fx-background-color: derive(-fx-accent-offset, 15%);
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent-offset, 15%), 8, 0.3, 0.0, 0.0);
+	-fx-scale-y: 1.35;
+    -fx-scale-x: 1.35;
+    
+    -fx-opacity: 75%;
+}
+
+#dragDropLabel{
+	-fx-text-fill: -fx-text;
+	-fx-alignment: center;
+	-fx-font-weight: bolder;
+	-fx-font-size: 38px;
+}
+
+#dragDropPane{
+	-fx-background-color: -fx-song-menu;
 }
 

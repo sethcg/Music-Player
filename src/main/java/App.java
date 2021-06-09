@@ -18,7 +18,7 @@ import javafx.stage.WindowEvent;
 public class App extends Application {
 
 	private final static int initialHeight = 480;
-	private final static int initialWidth = 640;
+	private final static int initialWidth = 860;
 	private double x, y = 0;
 
 	private static BorderPane root;

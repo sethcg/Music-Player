@@ -1,5 +1,9 @@
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
@@ -59,13 +63,20 @@ public class SongList {
     public void deleteSong(Song song){
     	File songFile = new File(song.getPath());
     	songFile.deleteOnExit();
-    	/*if(songFile.delete()) {
-        	System.out.println("Deleted: " + song.getPath());
-    	}else {
-        	System.out.println("Delete Failed");
-    	}*/
     }
     
-    /* FOR IMPLMENTING A SAVING FEATURE IN FUTURE */
-    //public void saveData(File file) { }
+    public void addSong(String fileLocation){ 
+    	if(fileLocation.endsWith(".mp3")){
+    		songList.add(new Song(fileLocation));
+    		try {
+    			Path songPath = FileSystems.getDefault().getPath(fileLocation);
+    			Path folderPath = FileSystems.getDefault().getPath(folder.getPath());
+    			Files.copy(songPath, folderPath.resolve(songPath.getFileName()));
+    		} catch (IOException e) {
+    		    e.printStackTrace();
+    		}
+    	}else {
+    		System.out.println("Invalid File: Not .mp3 File");
+    	}
+    }
 }

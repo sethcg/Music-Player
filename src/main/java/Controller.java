@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Random;
 
 import javafx.beans.value.ChangeListener;
@@ -6,7 +7,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
@@ -28,22 +28,22 @@ public class Controller {
 	private double xOffset = 0;
 	private double yOffset = 0;
 	private boolean canResize = false;
+	private boolean isRepeat = false;
+	private boolean isShuffle = false;
 	private Song prevSong = null;
 
-	private boolean hasPlayed = false;
 	private final static String playShape = "M 20 20 L 20 80 L 80 50 L 20 20 Z";
 	private final static String pauseShape = "M 20 20 L 30 20 L 30 80 L 20 80 L 20 20 M 40 20 L 50 20 L 50 80 L 40 80 Z";
 	
 	// Variables
-	private SongList songlist = new SongList();
+	private static final SongList songlist = new SongList();
 	private SongList playlist = new SongList();
 	private MediaPlayer mediaPlayer;
 	
 	// On construction in App via .load(FXML) pointing to the controller, Create the DataModel (SongList)
 	public Controller() {
         songlist.loadMusicFromFolder();
-        playlist = createInorderPlaylist(songlist);
-        //playlist = createRandomPlaylist(songlist);
+        playlist = createPlaylistByTitle(songlist);
 	}
 
 	
@@ -52,6 +52,10 @@ public class Controller {
 	@FXML private Label resizeButton;
 	
 	@FXML private Button SettingsButton;
+	@FXML private Button AddSongButton;
+	
+	@FXML private Button ShuffleButton;
+	@FXML private Button RepeatButton;
 	
 	// Album Controls
 	@FXML private ImageView albumCover;
@@ -105,7 +109,7 @@ public class Controller {
         root.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 if (canResize == true) {
-                	if(event.getX() + x >= 610) {
+                	if(event.getX() + x >= 860) {
                 		App.stage.setWidth(event.getX() + x);
                 	}
                 	if(event.getY() + y >= 240) {
@@ -149,8 +153,7 @@ public class Controller {
     
     /* METHODS FOR HANDLING BUTTONS */
     
-    protected void handlePlaySongButton(Song song){    	
-    	hasPlayed = true;
+    protected void handlePlaySongButton(Song song){
     	mediaPlayer.stop();
     	changeSong(song);
         mediaPlayer.play();
@@ -165,7 +168,45 @@ public class Controller {
     	songlist.getSongList().remove(song);
     	songlist.deleteSong(song);
     	playlist.getSongList().remove(song);
-    	root.setCenter(SongButtonHelper.addCenter(songlist, this));
+    	root.setCenter(SongButtonHelper.addCenter(playlist, this));
+    }
+    
+    @FXML
+    private void handleShuffleButton(){
+    	if(!isShuffle){
+    		isShuffle = true;
+    		playlist = createRandomPlaylist(songlist);
+    		root.setCenter(SongButtonHelper.addCenter(playlist, this));
+    		if(prevSong != null && prevSong.getSongStack().lookup("#SongButtonLabel") != null) {
+        		prevSong.getSongStack().lookup("#SongButtonLabel").setId("SongButtonLabelPlaying");
+        	}
+    		ShuffleButton.setId("ToggleButtonOn");
+    	}else {
+    		isShuffle = false;
+    		playlist = createPlaylistByTitle(songlist);
+    		root.setCenter(SongButtonHelper.addCenter(playlist, this));
+    		if(prevSong != null && prevSong.getSongStack().lookup("#SongButtonLabel") != null) {
+        		prevSong.getSongStack().lookup("#SongButtonLabel").setId("SongButtonLabelPlaying");
+        	}
+    		ShuffleButton.setId("ToggleButtonOff");
+    	}
+    }
+    
+    @FXML
+    private void handleRepeatButton(){
+    	if(!isRepeat){
+    		isRepeat = true;
+    		RepeatButton.setId("ToggleButtonOn");
+        	mediaPlayer.setOnEndOfMedia(() -> {
+        		handleBackButton();
+        	});
+    	}else{
+    		isRepeat = false;
+    		RepeatButton.setId("ToggleButtonOff");
+        	mediaPlayer.setOnEndOfMedia(() -> {
+        		handleNextButton();
+        	});
+    	}
     }
     
     
@@ -174,6 +215,7 @@ public class Controller {
     	switch(mediaPlayer.getStatus()) {
     		case PAUSED:
     			mediaPlayer.play();
+        		mediaPlayer.setVolume(volumeSlider.getValue() / 100.0);
     			playButton.setStyle("-fx-shape: '" + pauseShape + "';");
     			break;
     		case PLAYING:
@@ -193,6 +235,7 @@ public class Controller {
     			mediaPlayer.stop();
     			changeSong(playlist.getSongList().get(currentSongIndex + 1));
     			mediaPlayer.play();
+        		mediaPlayer.setVolume(volumeSlider.getValue() / 100.0);
     			playButton.setStyle("-fx-shape: '" + pauseShape + "';");
     		}
     	}
@@ -208,6 +251,7 @@ public class Controller {
     		mediaPlayer.stop();
     		changeSong(playlist.getSongList().get(currentSongIndex));
     		mediaPlayer.play();
+    		mediaPlayer.setVolume(volumeSlider.getValue() / 100.0);
     		playButton.setStyle("-fx-shape: '" + pauseShape + "';");
     	}
     }
@@ -239,16 +283,34 @@ public class Controller {
     	if(root.getCenter().getId() == "SongScrollPane") {
     		root.setCenter(SettingsHelper.addCenter(this));
     	}else {
-    		root.setCenter(SongButtonHelper.addCenter(songlist, this));
+    		root.setCenter(SongButtonHelper.addCenter(playlist, this));
+    		if(prevSong != null && prevSong.getSongStack().lookup("#SongButtonLabel") != null) {
+        		prevSong.getSongStack().lookup("#SongButtonLabel").setId("SongButtonLabelPlaying");
+        	}
+    	}
+    }
+    
+    @FXML
+    private void handleAddSongButton() {
+    	if(root.getCenter().getId() == "SongScrollPane") {
+        	root.setCenter(AddSongHelper.addCenter(playlist));
+    	}else {
+    		root.setCenter(SongButtonHelper.addCenter(playlist, this));
+    		if(prevSong != null && prevSong.getSongStack().lookup("#SongButtonLabel") != null) {
+        		prevSong.getSongStack().lookup("#SongButtonLabel").setId("SongButtonLabelPlaying");
+        	}
     	}
     }
       
     /* -------------- PLAYLIST METHODS ---------- */
 	
-	private SongList createInorderPlaylist(SongList songlist) {
-		for(Song song : this.songlist.getSongList()){
-			playlist.getSongList().add(song);
-		}
+	private SongList createPlaylistByTitle(SongList songlist) {
+		songlist.getSongList().sort(new Comparator<Song>(){
+	        public int compare(Song songOne, Song songTwo) {
+	            return songOne.getTitle().get().compareTo(songTwo.getTitle().get());
+	        }
+	    });
+		playlist = songlist;
 		initializeSong(playlist.getSongList().get(0));
 		return playlist;
 	}
@@ -294,6 +356,18 @@ public class Controller {
     	mediaPlayer = new MediaPlayer(playlist.getCurrentSong().getMedia().get());
         setImage(song);
         setSongDescription(song);
+        
+        // If the repeat toggle is enabled, repeat otherwise play next song.
+        if(isRepeat){
+        	mediaPlayer.setOnEndOfMedia(() -> {
+        		handleBackButton();
+        	});
+        }else {
+        	mediaPlayer.setOnEndOfMedia(() -> {
+        		handleNextButton();
+        	});
+        }
+        
         mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
 			public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
 				double progress = mediaPlayer.getCurrentTime().toMillis() / mediaPlayer.getTotalDuration().toMillis();
