@@ -16,25 +16,25 @@ This is a Music Player that takes in MP3 files from a local folder and displays 
 
 ----
 
+## Demo
+![Music-Player-Demo](https://user-images.githubusercontent.com/8952745/121301175-cd18d000-c8c5-11eb-88ea-39efab79e393.gif)
+
+----
+
 ## Music View:
-![Music_View_MP](https://user-images.githubusercontent.com/8952745/121302525-d30fb080-c8c7-11eb-9b85-9c26a1841af3.png)
+<img src="https://user-images.githubusercontent.com/8952745/121302525-d30fb080-c8c7-11eb-9b85-9c26a1841af3.png" width="550" height="300">
 
 ## Color Settings View:
-![Color_View_MP](https://user-images.githubusercontent.com/8952745/121302463-ba06ff80-c8c7-11eb-920f-f5533ef7b177.png)
+<img src="https://user-images.githubusercontent.com/8952745/121302463-ba06ff80-c8c7-11eb-920f-f5533ef7b177.png" width="550" height="300">
 
 ## Add Song View:
-![Add_Song_View](https://user-images.githubusercontent.com/8952745/121302489-c428fe00-c8c7-11eb-9353-f2bf48f483fe.png)
+<img src="https://user-images.githubusercontent.com/8952745/121302489-c428fe00-c8c7-11eb-9353-f2bf48f483fe.png" width="550" height="300">
 
 ----
 ## To Do:
 - ~~Add easy ability to add/delete songs~~
 - ~~Add way to easily configure color scheme and accent colors without changing CSS stylesheet~~
 - ~~Add way to sort the songs~~
-- Optimize, Optimize, Optimize
-
-----
-## Demo
-![Music-Player-Demo](https://user-images.githubusercontent.com/8952745/121301175-cd18d000-c8c5-11eb-88ea-39efab79e393.gif)
 
 ----
 
