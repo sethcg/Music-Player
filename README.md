@@ -2,7 +2,7 @@
 # Music-Player
 
 ## Description:
-This is a Music Player that takes in MP3 files from a local folder and displays controls for listening to the files. The song files are displayed on a visually pleasing GUI with many bells and whistles, including a simple method of adding files, deleting files, and buttons to meet all the users needs. This project was a ton of fun to create, for now the project is complete but I may look into some optimizations in the future.
+This is a Music Player that takes in MP3 files from a local folder and displays controls for listening to the files. The song files are displayed on a visually pleasing GUI with many bells and whistles, including a simple method of adding files, deleting files, and buttons to meet all the users needs.
 
 ----
 
@@ -43,5 +43,4 @@ During the design and implementation of this project I challenged myself not to 
 
 ----
 
-Tim Sanders said:
 > Education without application is just entertainment.
